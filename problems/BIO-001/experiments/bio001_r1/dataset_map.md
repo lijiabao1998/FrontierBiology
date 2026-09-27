@@ -4,7 +4,7 @@
 
 | 檔案 | 大小（實測） | 內容 | 用途 |
 |---|---|---|---|
-| `GSE133344_filtered_cell_identities.csv.gz` | 1,956,905 B | 每細胞：barcode、guide_identity、read/UMI count、coverage、gemgroup | **本輪已解析**：111,445 cells；81,542 single / 29,273 control / 630 dual；103 個單擾動；每擾動細胞數 min 126 / median 463 / max 3,824 |
+| `GSE133344_filtered_cell_identities.csv.gz` | 1,956,905 B | 每細胞：barcode、guide_identity、read/UMI count、coverage、gemgroup | **本輪已解析**：**[remediation 修正後]** 111,445 cells；57,831 single / 41,759 dual / 11,855 control；105 個單擾動；每擾動 113–1,960（median 495）。初版 81,542/630/29,273 係 parser 誤解 guide 命名（Codex P1），已由獨立實作驗證 |
 | `GSE133344_filtered_genes.tsv.gz` | 264,791 B | ENSG↔symbol 對照 | 基因索引（下輪表達矩陣對照用） |
 
 guide_identity 慣例（由實資料確認）：`<GENE>_<guide>__<GENE>_<guide>`；`NegCtrl*` 為對照 guide；兩半皆 NegCtrl = control cell。

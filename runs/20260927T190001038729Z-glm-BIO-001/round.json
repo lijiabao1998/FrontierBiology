@@ -99,7 +99,27 @@
     "state": "ROUND_FINISHED",
     "verdict": "NO_RESOLUTION_FOUND",
     "summary": "真實 Norman metadata 審計（111,445 cells、103 singles）；frozen/leaky/donor 三模式 evaluator；洩漏負控制 PASS（gap 0.878/0.187）；表達矩陣 1.1GB 記 DATA_TRACTABILITY_BLOCKED 未偽造。",
-    "wall_minutes_used_approx": 35
+    "wall_minutes_used_approx": 35,
+    "independent_check": {
+      "script": "problems/BIO-001/experiments/bio001_r1/independent_check.py",
+      "structure": "regex tokenisation + memoisation (structurally distinct from main parser)",
+      "checks_passed": 6,
+      "verdict": "INDEPENDENT_CHECK_MATCH"
+    },
+    "remediation": {
+      "codex_findings": 4,
+      "P1_fixed": 3,
+      "P2_fixed": 1,
+      "corrected_counts": {
+        "single": 57831,
+        "dual": 41759,
+        "control": 11855,
+        "single_perturbations": 105
+      },
+      "superseded_claims": [
+        "81,542 single / 630 dual / 29,273 control / 103 singles"
+      ]
+    }
   },
   "admitted_at": "2026-09-27T19:04:29.566000+00:00"
 }

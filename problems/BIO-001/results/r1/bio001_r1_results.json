@@ -1,42 +1,42 @@
 {
-  "generated": "2026-09-27T19:06:14+00:00",
+  "generated": "2026-09-27T20:03:44+00:00",
   "norman_audit": {
     "file": "GSE133344_filtered_cell_identities.csv.gz",
     "cells_total": 111445,
     "cells_good_coverage": 104507,
     "class_counts": {
-      "single": 81542,
-      "control": 29273,
-      "dual": 630
+      "single": 57831,
+      "dual": 41759,
+      "control": 11855
     },
-    "single_perturbations": 103,
-    "single_perturbation_cells": 81542,
-    "dual_perturbations": 3,
+    "single_perturbations": 105,
+    "single_perturbation_cells": 57831,
+    "dual_perturbations": 131,
     "cells_per_single_perturbation": {
-      "min": 126,
-      "median": 463,
-      "max": 3824,
-      "p10": 232,
-      "p90": 1630
+      "min": 113,
+      "median": 495,
+      "max": 1960,
+      "p10": 241,
+      "p90": 874
     },
     "smallest_5": {
+      "PLK4": 113,
       "HES7": 126,
-      "STIL": 145,
-      "IER5L": 183,
-      "CDKN1A": 184,
-      "NIT1": 192
+      "ZBTB10": 162,
+      "NIT1": 192,
+      "CITED1": 215
     },
     "largest_5": {
-      "ETS2": 3824,
-      "KLF1": 3399,
-      "CEBPE": 3378,
-      "UBASH3B": 3218,
-      "DUSP9": 3036
+      "KLF1": 1960,
+      "BAK1": 1457,
+      "CEBPE": 1233,
+      "UBASH3B": 1202,
+      "ETS2": 1201
     },
     "blake2b_fold_sizes_over_singles": {
-      "0": 22,
+      "0": 23,
       "1": 22,
-      "2": 16,
+      "2": 17,
       "3": 20,
       "4": 23
     }
@@ -50,8 +50,10 @@
     "leaky_pearson": 0.8776,
     "leaky_mse": 0.115,
     "donorleak_pearson": 0.1869,
+    "donorclean_pearson": 0.0,
     "group_leak_gap": 0.8776,
-    "donor_leak_gap": 0.1869
+    "donor_leak_gap_vs_donorclean": 0.1869,
+    "donor_leak_gap_note": "Codex-review corrected: donor leakage is now measured against a donor-held-out split (test donors unseen in training), not merely against the estimator feature being switched off."
   },
   "pre_registered_checks": {
     "E1_frozen_split_low_signal": true,
