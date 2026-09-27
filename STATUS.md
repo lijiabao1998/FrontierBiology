@@ -1,6 +1,6 @@
-# 狀態｜2026-09-27 bootstrap
+# 狀態｜2026-09-28
 
-主線 BIO-001：先重新檢索、核資料授權與留出規則，重現簡單基線。
+主線：BIO-001 r1 完成（Norman metadata 審計＋frozen/leaky evaluator＋洩漏負控制 PASS；表達矩陣 1.1GB tractability-BLOCKED，解除路徑已寫明）。研究輪次 1。
 
 問題卡10；研究輪次0；各題 evaluator 尚未實作；無本庫新機制、無新實驗或臨床結果。
 

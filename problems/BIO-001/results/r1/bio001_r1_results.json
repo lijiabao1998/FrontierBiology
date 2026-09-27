@@ -1,0 +1,63 @@
+{
+  "generated": "2026-09-27T19:06:14+00:00",
+  "norman_audit": {
+    "file": "GSE133344_filtered_cell_identities.csv.gz",
+    "cells_total": 111445,
+    "cells_good_coverage": 104507,
+    "class_counts": {
+      "single": 81542,
+      "control": 29273,
+      "dual": 630
+    },
+    "single_perturbations": 103,
+    "single_perturbation_cells": 81542,
+    "dual_perturbations": 3,
+    "cells_per_single_perturbation": {
+      "min": 126,
+      "median": 463,
+      "max": 3824,
+      "p10": 232,
+      "p90": 1630
+    },
+    "smallest_5": {
+      "HES7": 126,
+      "STIL": 145,
+      "IER5L": 183,
+      "CDKN1A": 184,
+      "NIT1": 192
+    },
+    "largest_5": {
+      "ETS2": 3824,
+      "KLF1": 3399,
+      "CEBPE": 3378,
+      "UBASH3B": 3218,
+      "DUSP9": 3036
+    },
+    "blake2b_fold_sizes_over_singles": {
+      "0": 22,
+      "1": 22,
+      "2": 16,
+      "3": 20,
+      "4": 23
+    }
+  },
+  "synthetic_demo": {
+    "n_cells": 6000,
+    "n_test_frozen": 1496,
+    "n_test_leaky": 770,
+    "frozen_pearson": 0.0,
+    "frozen_mse": 0.794,
+    "leaky_pearson": 0.8776,
+    "leaky_mse": 0.115,
+    "donorleak_pearson": 0.1869,
+    "group_leak_gap": 0.8776,
+    "donor_leak_gap": 0.1869
+  },
+  "pre_registered_checks": {
+    "E1_frozen_split_low_signal": true,
+    "E2_group_leak_gap_ge_0.2": true,
+    "E3_donor_leak_gap_ge_0.1": true,
+    "E4_leaky_mse_better_than_frozen": true
+  },
+  "verdict": "LEAKAGE_DEMO_PASS"
+}
