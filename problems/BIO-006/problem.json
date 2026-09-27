@@ -1,0 +1,13 @@
+{
+"id":"BIO-006","domain":"biology","title":"蛋白構象系綜對環境條件的可靠預測","status":"OPEN","priority":"B","checked_on":"2026-09-27",
+"statement":"對良性公開蛋白／無序區域，能否預測未見環境條件下的構象分布及實驗可觀測量，而不只預測單一漂亮結構？",
+"known_result":"STARLING2026以粗粒化模擬及生成模型建立IDR系綜，支援部分環境條件；原文清楚列出力場、二級結構及observable回推等限制。",
+"open_gap":"超出訓練條件時的分布、權重及測量一致性；動力學速率不能從靜態系綜直接推定。",
+"first_task":"先凍結一組安全公開系綜／測量及留出條件，核查back-calculation基線，再比較分布指標與單一平均量。",
+"evaluator":"物理幾何、ensemble observable、置信區間、環境留出及不同觀測回推模型敏感性。",
+"validation_limits":"相同平均Rg可對應不同系綜；模擬force-field一致不是實驗真實性保證。",
+"completion_criterion":"在明列蛋白與條件下獨立驗證系綜結果；一般sequence-to-ensemble映射不因一個案例完成。",
+"screening_note":"已讀原始摘要與限制段落；未產生新序列、實驗或模型訓練。",
+"screening_queries":["\"Accurate predictions of disordered protein ensembles with STARLING\""],
+"sources":[{"title":"Accurate predictions of disordered protein ensembles with STARLING (2026)","url":"https://doi.org/10.1038/s41586-026-10141-2","kind":"primary","supports":"系綜預測進展、環境條件與方法限制。"}]
+}

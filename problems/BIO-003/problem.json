@@ -1,0 +1,13 @@
+{
+"id":"BIO-003","domain":"biology","title":"從單細胞快照推斷細胞命運與方向","status":"OPEN","priority":"B","checked_on":"2026-09-27",
+"statement":"在只有分散細胞快照與RNA計數的条件下，哪些轉錄動態／命運方向可識別？模型在非穩態、弱訊號與分支軌跡下何時失效？",
+"known_result":"Cell2fate以Bayesian動力學及模組化改善RNA velocity，原始論文也列出舊方法的生物物理近似限制。",
+"open_gap":"快照推論與獨立lineage／時間觀測的一致性、方向和速率不確定性。",
+"first_task":"用具有已知方向的合成資料核查模型，再選有独立lineage或時間資訊的公开低風險資料，將其留作驗證。",
+"evaluator":"方向／分支識別、posterior校準、未見時間點預測及參數敏感性；和簡單時間／鄰域基線比較。",
+"validation_limits":"pseudotime排序不等於真實時間；RNA velocity箭頭不是直接觀測的細胞系譜。",
+"completion_criterion":"在已列假設與資料場景取得可識別及獨立核實結果；更廣的命運問題保留。",
+"screening_note":"本次讀原始摘要與方法公開段落；不聲稱已重現生物時間軌跡。",
+"screening_queries":["\"Cell2fate infers RNA velocity modules\""],
+"sources":[{"title":"Cell2fate infers RNA velocity modules to improve cell fate prediction (2025)","url":"https://www.nature.com/articles/s41592-025-02608-3","kind":"primary","supports":"RNA velocity的動力學假設與方法進展。"}]
+}

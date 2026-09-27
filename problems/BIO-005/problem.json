@@ -1,0 +1,13 @@
+{
+"id":"BIO-005","domain":"biology","title":"良性蛋白多重突變的高階上位性泛化","status":"OPEN","priority":"B","checked_on":"2026-09-27",
+"statement":"在公開、非病原非毒素蛋白測量中，單突變及低階資料能否可靠預測未見多突變組合的非加成效應？任務限預測評估，不產出功能增強設計。",
+"known_result":"ProteinGym依資料類型、訓練方式及mutation depth提供基準，可用來區分單突變與多突變的預測表現。",
+"open_gap":"跨突變深度、同源群及測量條件的上位性與不確定性。",
+"first_task":"挑一個安全且有授權的非病原assay，先驗索引、同源洩漏及分數方向，再用加成模型預測留出的多突變組合。",
+"evaluator":"按mutation depth分層的相關／誤差、上位性殘差及區間，固定同源與序列切分。",
+"validation_limits":"相關高不代表精確生物機制；混合assay量綱不可直接比較；不使用病毒／毒素基準作功能優化。",
+"completion_criterion":"對凍結良性資料任務形成經獨立核對的泛化結果；一般高階上位性問題仍分開記錄。",
+"screening_note":"已讀官方基準網站與評分欄位，尚未取得或運算具體assay。",
+"screening_queries":["\"ProteinGym\" benchmarks higher order mutations","site.proteingym.org benchmarks"],
+"sources":[{"title":"ProteinGym official benchmarks","url":"https://proteingym.org/","kind":"primary","supports":"原始維護團隊的資料及評估分類。"},{"title":"ProteinGym benchmark scores","url":"https://proteingym.org/benchmarks","kind":"primary","supports":"mutation-depth分層評分，非一般問題已解。"}]
+}

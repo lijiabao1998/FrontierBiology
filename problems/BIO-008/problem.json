@@ -1,0 +1,13 @@
+{
+"id":"BIO-008","domain":"biology","title":"老化標記的跨研究效度與因果解釋","status":"OPEN","priority":"C","checked_on":"2026-09-27",
+"statement":"多組學老化分數在不同組織、物種／族群與研究条件下，究竟反映可泛化的生物變化、混雜或測量差異？預測年齡與解釋死亡／衰老機制分開處理。",
+"known_result":"2026跨哺乳類轉錄組研究提供ageing／mortality標記與模組；原文仍指出干預調節健康及死亡的分子機制需要釐清。",
+"open_gap":"標記的可遷移性、共同原因、選擇偏差及因果意義。",
+"first_task":"只選合法公開去識別資料／統計摘要，先跨研究留出重現簡單年齡模型，再查批次、組織與細胞比例混雜。",
+"evaluator":"跨研究校準、分層誤差、混雜及missingness敏感性、預先定義的外部驗證指標。",
+"validation_limits":"時鐘數字下降不等於延壽或逆齡；不得輸出個人健康診斷、治療或實驗干預。",
+"completion_criterion":"明列族群與測量條件下的可驗證識別結論；一般衰老因果問題不因預測高分完成。",
+"screening_note":"已讀2026原始摘要及跨物種方法說明，未取得受限個體資料。",
+"screening_queries":["\"Universal transcriptomic hallmarks of mammalian ageing and mortality\""],
+"sources":[{"title":"Universal transcriptomic hallmarks of mammalian ageing and mortality (2026)","url":"https://www.nature.com/articles/s41586-026-10542-3","kind":"primary","supports":"標記與模組進展，以及機制解釋仍須區分。"}]
+}

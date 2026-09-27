@@ -1,0 +1,13 @@
+{
+"id":"BIO-010","domain":"biology","title":"物種分布的時空外推與觀測偏差","status":"OPEN","priority":"A","checked_on":"2026-09-27",
+"statement":"由存在紀錄與環境變量學得的物種分布模型，能否在空間／時間留出地區準確預測群落組成，並分辨真實缺席與未被觀測？",
+"known_result":"GeoLifeCLEF2023原始總結於2025公開，特別分析單一正標籤訓練與多標籤群落評估的偏差；基準版本和年份需分開記。",
+"open_gap":"採樣偏差、環境變遷與空間自相關下的可靠外推及校準。",
+"first_task":"選有license的公開植物資料小區塊，不存敏感物種精細座標；先做空間blocked split及簡單基線，與隨機切分比較。",
+"evaluator":"空間／時間留出、排序與校準指標、觀測努力偏差、未知缺席的處理及bootstrap不確定性。",
+"validation_limits":"未記錄不等於不存在；random split高分不能證明跨地區遷移或因果環境影響。",
+"completion_criterion":"凍結區域、時期和測量設計的子任務經獨立確認；普遍分布預測問題仍保留。",
+"screening_note":"已讀原始arXiv摘要及基準描述，下一輪再核當年度資料版本與使用限制。",
+"screening_queries":["\"Overview of GeoLifeCLEF 2023\""],
+"sources":[{"title":"Overview of GeoLifeCLEF 2023: Species Composition Prediction with High Spatial Resolution at Continental Scale Using Remote Sensing","url":"https://arxiv.org/abs/2509.25816","kind":"primary","supports":"原始基準、物種存在資料與群落評估的偏差。"}]
+}

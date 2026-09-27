@@ -1,0 +1,13 @@
+{
+"id":"BIO-002","domain":"biology","title":"基因調控網路的因果可識別性","status":"OPEN","priority":"A","checked_on":"2026-09-27",
+"statement":"在單細胞觀察與公開擾動資料下，哪些基因調控邊能被識別，哪些仍受混雜、間接作用與測量雜訊影響？先固定一個良性資料場景。",
+"known_result":"CausalBench提供真實擾動資料的network-inference評估，並強調缺乏完整ground truth及合成資料與真實表現差異。",
+"open_gap":"從預測／介入相關性到方向、直接性與跨情境有效因果網路的可靠界線。",
+"first_task":"先以已知小合成網路建立評分與混雜负控制，再按官方許可挑一個小型公開資料基線；兩種證據分開報。",
+"evaluator":"介入分布預測、邊識別誤差、方向敏感性、缺失／雜訊穩健性及跨研究留出。",
+"validation_limits":"合成圖完美恢復不代表真實細胞因果圖正確；擾動可經多條路徑影響下游。",
+"completion_criterion":"固定假設下的識別性定理或被獨立資料支持的有限網路結果；不得藉一個benchmark關閉一般機制題。",
+"screening_note":"讀原始論文公開摘要、評估及資料授權段落；未實際下載或做生物干預。",
+"screening_queries":["\"A large-scale benchmark for network inference from single-cell perturbation data\""],
+"sources":[{"title":"A large-scale benchmark for network inference from single-cell perturbation data (2025)","url":"https://www.nature.com/articles/s42003-025-07764-y","kind":"primary","supports":"network inference真實基準、ground truth限制與資料來源。"}]
+}

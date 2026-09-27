@@ -1,0 +1,13 @@
+{
+"id":"BIO-004","domain":"biology","title":"非編碼變異的跨組織調控效應","status":"OPEN","priority":"B","checked_on":"2026-09-27",
+"statement":"能否在訓練未見的基因組區域與細胞情境，可靠預測非編碼變異對良性分子測量的方向與大小，並量化適用範圍？本庫不進行致病性設計或臨床診斷。",
+"known_result":"AlphaGenome2026整合長序列、多模態與高解析預測，提升多個benchmark；原文區分分子效應與表型後果。",
+"open_gap":"跨組織泛化、未見調控環境及分子效應到表型的非唯一映射。",
+"first_task":"限定已公開低風險benchmark的讀取與評估，先核基因組版本、染色體留出及cell-context洩漏；重現簡單基線與校準。",
+"evaluator":"效應方向／大小、精確率召回率、校準、跨區域和情境外推；不做序列優化。",
+"validation_limits":"模型分數不是臨床致病性結論；資料範圍內SOTA不等於調控碼完全破解。",
+"completion_criterion":"凍結測量與情境的子題完成需獨立驗證；一般調控問題不因單組benchmark完成。",
+"screening_note":"本次讀2026原始摘要及公开方法／限制；沒有執行模型或個體基因組分析。",
+"screening_queries":["\"Advancing regulatory variant effect prediction with AlphaGenome\""],
+"sources":[{"title":"Advancing regulatory variant effect prediction with AlphaGenome (2026)","url":"https://doi.org/10.1038/s41586-025-10014-0","kind":"primary","supports":"分子調控預測進展及分子效應與表型後果的區分。"}]
+}

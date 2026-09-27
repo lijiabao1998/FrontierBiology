@@ -1,0 +1,13 @@
+{
+"id":"BIO-007","domain":"biology","title":"未見RNA摺疊及複合體的三維結構預測","status":"OPEN","priority":"B","checked_on":"2026-09-27",
+"statement":"對不具近似模板的良性RNA盲測目標，能否可靠預測單體／複合體三維幾何並辨識低可信區域？先限定公開安全結構基準。",
+"known_result":"CASP16原始核酸評估報告指出未知RNA及複合體仍有明顯精度缺口，模板可用性會大幅影響評價。",
+"open_gap":"未知摺疊的泛化、複合體拓撲與信心校準，而不是已知模板再現。",
+"first_task":"鎖定安全公開盲測子集、公開日期和模板排除規則，重驗簡單基線／既有預測的評分與幾何合法性。",
+"evaluator":"幾何碰撞、鏈連接、對齊與拓撲指標、模板／同源洩漏檢查、confidence calibration。",
+"validation_limits":"單個RMSD／TM-score不能涵蓋全部化學正確性；沒有新實驗就不宣稱新RNA功能機制。",
+"completion_criterion":"凍結盲測子題的獨立驗證；一般未知RNA結構問題不能由單一測試集關閉。",
+"screening_note":"已查原始預印本及正式發表索引；下一輪以版本紀錄為準，不將預印本年份當永久最新。",
+"screening_queries":["\"Assessment of nucleic acid structure prediction in CASP16\""],
+"sources":[{"title":"Assessment of nucleic acid structure prediction in CASP16","url":"https://www.biorxiv.org/content/10.1101/2025.05.06.652459v1.full","kind":"primary","supports":"原始盲測設計與結構預測缺口。"},{"title":"CASP16 nucleic acid assessment publication record","url":"https://pubmed.ncbi.nlm.nih.gov/41165252/","kind":"official","supports":"正式發表版本與原始摘要核對。"}]
+}

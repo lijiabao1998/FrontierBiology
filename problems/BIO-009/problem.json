@@ -1,0 +1,13 @@
+{
+"id":"BIO-009","domain":"biology","title":"生態動力系統的參數與交互作用可識別性","status":"OPEN","priority":"B","checked_on":"2026-09-27",
+"statement":"對非病原合成生態系統與安全公開群落資料，稀疏、帶噪音的時間序列是否足以區分交互作用模型及未見條件下的動態？",
+"known_result":"MBPert將微分方程與參數估計結合，在合成與應用資料驗證；本庫只採其一般數學／合成框架，不延伸文中疾病例子的干預研究。",
+"open_gap":"不同參數／模型能產生近似軌跡時的可識別性與不確定性，及真實與合成資料差異。",
+"first_task":"建立小型非病原合成gLV系統，固定抽樣與噪音，比較不同參數集能否同時擬合訓練卻預測分岔。",
+"evaluator":"軌跡誤差、留出時間／條件預測、參數等價類、信賴區間、零交互作用對照。",
+"validation_limits":"預測軌跡準確不等於交互作用矩陣唯一正確；不輸出病原群落優化或干預方案。",
+"completion_criterion":"限定系統與測量設計的識別性／穩健性子結果；不把合成系統結論泛化到全部微生物生態。",
+"screening_note":"已讀原始摘要、方法及資料入口；本庫沒有下載疾病資料或進行干預。",
+"screening_queries":["\"A computational framework for inferring species dynamics and interactions\""],
+"sources":[{"title":"A computational framework for inferring species dynamics and interactions with applications in microbiota ecology (2025)","url":"https://www.nature.com/articles/s41540-025-00568-0","kind":"primary","supports":"一般ODE推論框架與公開合成資料；本庫限定安全子範圍。"}]
+}
