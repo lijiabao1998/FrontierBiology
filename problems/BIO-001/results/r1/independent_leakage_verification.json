@@ -9,6 +9,7 @@
     "same_rows": true
   },
   "checks": {
+    "V0_same_test_rows_E2": true,
     "V1_group_gap_reproduced": true,
     "V2_donor_gap_reproduced": true,
     "V3_same_test_rows_donor_regimes": true,

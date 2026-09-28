@@ -209,34 +209,76 @@ def main() -> int:
     out = {"generated": datetime.now(timezone.utc).isoformat(timespec="seconds")}
     out["norman_audit"] = audit_norman()
     cells, gene_group, _ = make_synthetic()
-    frozen_p, frozen_mse, n_frozen, _ = run_split(cells, gene_group, "frozen")
-    leaky_p, leaky_mse, n_leaky, _ = run_split(cells, gene_group, "leaky")
-    # Codex P1 (convergence): CLEAN and LEAKY share IDENTICAL test rows T
-    # (held-out-group cells, all donors) and identical training rows; the ONLY
-    # difference is the leakage condition (donor-label channel open or not).
+    # Codex P1 (convergence-2): the preregistered E2 comparison must use ONE
+    # test set. T = cells of the held-out genes (individual-gene holdout,
+    # 770 rows across ALL groups). The two regimes differ ONLY in whether the
+    # held genes' functional siblings enter training:
+    #   leaky : train = all cells except held genes  (siblings present)
+    #   clean : train also removes the held genes' whole groups (no sibling)
+    rng = random.Random(12345)
+    held_genes = set()
+    for grp in sorted(set(ggrp_val for ggrp_val in
+                          [g * 8 // 60 for g in range(60)])):
+        genes = [g for g in range(60) if g * 8 // 60 == grp]
+        rng.shuffle(genes)
+        held_genes.update(genes[:max(1, int(len(genes) * 0.2))])
+    held_groups = {g * 8 // 60 for g in held_genes}
+
+    def run_same_T(siblings: bool):
+        # BOTH regimes: identical training rows (all cells except held genes)
+        # and identical test rows T. Only the training EXPOSURE differs:
+        # LEAKY sees functional siblings (group means available); CLEAN sees
+        # no sibling information — for a group-mean estimator the only
+        # sibling-free estimate is the global mean (recorded degeneracy).
+        train = [c for c in cells if c[0] not in held_genes]
+        test = [c for c in cells if c[0] in held_genes]
+        gmean = defaultdict(list)
+        glob = []
+        for g, grp, d, b, delta in train:
+            gmean[grp].append(delta)
+            glob.append(delta)
+        mu = sum(glob) / len(glob)
+        gm = {k: sum(v) / len(v) for k, v in gmean.items()}
+        preds, trues = [], []
+        for g, grp, d, b, delta in test:
+            preds.append(gm.get(grp, mu) if siblings else mu)
+            trues.append(delta)
+        mse = sum((p - t) ** 2 for p, t in zip(preds, trues)) / len(trues)
+        ids = sorted((g, grp, d, b) for g, grp, d, b, _ in test)
+        return pearson(preds, trues), mse, len(test), ids
+
+    leaky_p, leaky_mse, n_leaky, leaky_rows = run_same_T(siblings=True)
+    frozen_p, frozen_mse, n_frozen, frozen_rows = run_same_T(siblings=False)
+    same_T = leaky_rows == frozen_rows
+    clean_reference_note = ("CLEAN reference collapses to the global mean: a "
+        "group-mean estimator has no sibling-free group estimate when every "
+        "group contains held genes; recorded as the honest sibling-free "
+        "reference on identical T")
     dl_p, dl_mse, _, dl_rows = run_split(cells, gene_group, "donorleak",
                                          donor_holdout=True)
     dc_p, dc_mse, _, dc_rows = run_split(cells, gene_group, "donorclean",
                                          donor_holdout=True)
-    same_T = dl_rows == dc_rows
-    # recorded honestly (Codex): on the donor-3-only subset BOTH predictors
-    # are constant and both Pearson values are 0 — the gap exists only across
-    # the full multi-donor T, as a donor-channel leakage signal.
+    same_T_donor = dl_rows == dc_rows
     out["synthetic_demo"] = {
-        "n_cells": len(cells), "n_test_frozen": n_frozen, "n_test_leaky": n_leaky,
+        "n_cells": len(cells),
+        "n_test_E2": n_leaky,
+        "E2_design": "single held-gene test set T; regimes differ only in "
+                     "whether functional siblings enter training",
+        "same_test_rows_invariant": same_T,
+        "clean_reference_note": clean_reference_note,
+        "n_test_cohorts_identical": n_leaky == n_frozen,
         "frozen_pearson": round(frozen_p, 4), "frozen_mse": round(frozen_mse, 4),
         "leaky_pearson": round(leaky_p, 4), "leaky_mse": round(leaky_mse, 4),
         "donorleak_pearson": round(dl_p, 4),
         "donorclean_pearson": round(dc_p, 4),
+        "same_test_rows_invariant_donor": same_T_donor,
         "group_leak_gap": round(leaky_p - frozen_p, 4),
         "donor_leak_gap_vs_donorclean": round(dl_p - dc_p, 4),
-        "same_test_rows_invariant": same_T,
-        "donor_exposure_note": "LEAKY train includes T-donor rows; CLEAN train excludes them (non-T donor rows only); T identical in both (Codex convergence P1)",
-        "donor_leak_gap_note": "Codex-review corrected: donor leakage is now "
-                               "measured against a donor-held-out split (test "
-                               "donors unseen in training), not merely against "
-                               "the estimator feature being switched off.",
+        "donor_exposure_note": "donor diagnostic (POST_HOC): LEAKY train "
+                               "includes T-donor rows; CLEAN excludes them",
     }
+    gap_group = leaky_p - frozen_p
+    gap_donor = dl_p - dc_p
     gap_group = leaky_p - frozen_p
     gap_donor = dl_p - dc_p
     # Codex P1: the admitted acceptance froze ONLY the group gap >= 0.2.

@@ -51,9 +51,10 @@ def gen(seed=42, n_genes=60, n_groups=8, n_donors=4, n_batches=3, n_cells=6000):
 
 
 def evaluate(cells, ggrp, regime):
-    """(v2) donor regimes: T = held-group cells of donors {0,1,2}; LEAKY trains
-    on all non-held rows, CLEAN trains only on non-T-donor (donor 3) rows;
-    identical T in both regimes."""
+    """(v3) E2 design: single held-gene test set T (770 rows); LEAKY sees
+    functional siblings in training, CLEAN gets only the global mean (the
+    honest sibling-free reference for a group-mean estimator). Donor regimes
+    unchanged (post-hoc diagnostic, same-T)."""
     """Independent split + estimator. Returns (pearson, mse, test_row_ids).
 
     frozen/donor regimes: whole-group holdout (groups 6,7).
@@ -67,18 +68,19 @@ def evaluate(cells, ggrp, regime):
         genes = [g for g in range(len(ggrp)) if ggrp[g] == grp]
         rng.shuffle(genes)
         held_genes.update(genes[:max(1, int(len(genes) * 0.2))])
-    held = {6, 7}
-    if regime == "leaky":
+    if regime in ("frozen", "leaky"):
+        # E2: single held-gene test set; only sibling exposure differs
         train = [c for c in cells if c[0] not in held_genes]
         test = [c for c in cells if c[0] in held_genes]
     else:
+        held = {6, 7}
         train = [c for c in cells if c[1] not in held]
         test = [c for c in cells if c[1] in held]
-    if regime in ("donor_leak", "donor_clean"):
-        t_donors = sorted({d for _, _, d, _, _ in test})[:3]
-        test = [c for c in test if c[2] in t_donors]
-        if regime == "donor_clean":
-            train = [c for c in train if c[2] not in t_donors]
+        if regime in ("donor_leak", "donor_clean"):
+            t_donors = sorted({d for _, _, d, _, _ in test})[:3]
+            test = [c for c in test if c[2] in t_donors]
+            if regime == "donor_clean":
+                train = [c for c in train if c[2] not in t_donors]
     gmean = defaultdict(list)
     dmean = defaultdict(list)
     glob = []
@@ -92,7 +94,7 @@ def evaluate(cells, ggrp, regime):
     preds, trues, ids = [], [], []
     for g, grp, d, b, delta in test:
         if regime == "frozen":
-            p = gm.get(grp, mu)
+            p = mu  # sibling-free reference (global mean)
         elif regime == "leaky":
             p = gm.get(grp, mu)
         elif regime == "donor_leak":
@@ -119,6 +121,7 @@ def main() -> int:
     gap_group = l_p - f_p
     gap_donor = dl_p - dc_p
     checks = {
+        "V0_same_test_rows_E2": l_ids == f_ids,
         "V1_group_gap_reproduced": abs(gap_group - committed["group_leak_gap"]) < 1e-3,
         "V2_donor_gap_reproduced": abs(gap_donor - committed["donor_leak_gap_vs_donorclean"]) < 1e-3,
         "V3_same_test_rows_donor_regimes": dl_ids == dc_ids,

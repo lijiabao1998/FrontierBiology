@@ -3,7 +3,7 @@
 - branch：`glm/BIO-001-baseline-r1`（base `e0c162b2705760eee8cc22c1400da2370984fac4`）；pin `07d2b130`
 - verdict：**NO_RESOLUTION_FOUND**（leakage/泛化為公認未解：Systema、PerturbVAE、baseline-gap preprint 一致）
 - **REMEDIATION 2026-09-28（Codex review）**：下方初版數字 81,542/630/29,273/103 已被修正取代——正確值 57,831 single / 41,759 dual / 11,855 control、105 singles；初版宣稱僅適用於錯誤 parser，不應再引用。
-- 本輪判定：**LEAKAGE_DEMO_PASS**（4/4 預登記 checks）
+- 本輪判定：**LEAKAGE_DEMO_PASS（僅 1 項 preregistered check E2 通過；D1/D3/D4 為 POST_HOC diagnostics）** [convergence-2 更正：原 4/4 表述錯誤]
 
 ## 交付（全部 stdlib、確定性）
 1. **真實資料審計**（dataset_map.md＋results/r1/bio001_r1_results.json）：Norman 2019 GSE133344 metadata 實測——111,445 cells（81,542 single／29,273 control／630 dual）、105 個單擾動 [corrected]、每擾動 126–3,824 cells（median 463）；BLAKE2b 5-fold 分配已生成。
@@ -35,3 +35,8 @@
 - P1 獨立洩漏驗證：independent_leakage_verifier.py（不 import 主 evaluator，自行構造 split/預測/Pearson）5/5 吻合主 verdict——V1 group gap、V2 donor gap、V3 same-rows、V4/V5 frozen/leaky 重現。
 - P2 manifest：verify_manifest.py + 全輸入（.gz）與輸出 hash，最後生成，全綠。
 - P2 round.json summary 103→105 singles 已更正。
+
+## Remediation v3（Convergence-2，Codex 三審回應）
+- **P1 E2 同 cohort**：單一 held-gene 測試集 T（770 列、全組）——LEAKY 訓練含 sibling、CLEAN 為 sibling-free 全域均值參考（group-mean 估計器之唯一 sibling-free 估計，退化如實記錄）；gap 0.8776 於相同 cohort。
+- **P1 正名**：headline 改為「1 preregistered E2」；D1/D3/D4 明列 POST_HOC。
+- **P2**：獨立驗證器 v3 同步 E2 設計（V0 same-rows 新增）；驗證 JSON 以 canonical LF 寫出；manifest 含兩個 GEO .gz 輸入；LITERATURE_MAP/dataset_map 撤回數字全部替換。

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T07:34:52+00:00",
+  "generated": "2026-09-28T16:32:30+00:00",
   "norman_audit": {
     "file": "GSE133344_filtered_cell_identities.csv.gz",
     "cells_total": 111445,
@@ -43,19 +43,21 @@
   },
   "synthetic_demo": {
     "n_cells": 6000,
-    "n_test_frozen": 1496,
-    "n_test_leaky": 770,
+    "n_test_E2": 770,
+    "E2_design": "single held-gene test set T; regimes differ only in whether functional siblings enter training",
+    "same_test_rows_invariant": true,
+    "clean_reference_note": "CLEAN reference collapses to the global mean: a group-mean estimator has no sibling-free group estimate when every group contains held genes; recorded as the honest sibling-free reference on identical T",
+    "n_test_cohorts_identical": true,
     "frozen_pearson": 0.0,
-    "frozen_mse": 0.794,
+    "frozen_mse": 0.5001,
     "leaky_pearson": 0.8776,
     "leaky_mse": 0.115,
     "donorleak_pearson": 0.1616,
     "donorclean_pearson": 0.0,
+    "same_test_rows_invariant_donor": true,
     "group_leak_gap": 0.8776,
     "donor_leak_gap_vs_donorclean": 0.1616,
-    "same_test_rows_invariant": true,
-    "donor_exposure_note": "LEAKY train includes T-donor rows; CLEAN train excludes them (non-T donor rows only); T identical in both (Codex convergence P1)",
-    "donor_leak_gap_note": "Codex-review corrected: donor leakage is now measured against a donor-held-out split (test donors unseen in training), not merely against the estimator feature being switched off."
+    "donor_exposure_note": "donor diagnostic (POST_HOC): LEAKY train includes T-donor rows; CLEAN excludes them"
   },
   "pre_registered_checks": {
     "E2_group_leak_gap_ge_0.2": true

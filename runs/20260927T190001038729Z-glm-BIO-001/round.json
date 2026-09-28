@@ -127,6 +127,11 @@
       "post_hoc_relabel": "only E2 (group gap >= 0.2) was preregistered; D1/D3/D4 relabelled post_hoc_diagnostics (Codex P1)",
       "same_T_donor_comparison": "CLEAN vs LEAKY on identical test rows T; degenerate donor-3 subset recorded honestly",
       "main_verdict": "LEAKAGE_DEMO_PASS stands on preregistered E2 + same-T invariant"
+    },
+    "remediation_v3": {
+      "E2_identical_cohorts": "single held-gene test set T (770 rows); LEAKY=sibling exposure, CLEAN=global-mean sibling-free reference; gap 0.8776 >= 0.2 on identical cohorts",
+      "headline": "1 preregistered check (E2) PASS; D1/D3/D4 remain POST_HOC diagnostics",
+      "newline": "independent_leakage_verification.json written with canonical LF"
     }
   },
   "admitted_at": "2026-09-27T19:04:29.566000+00:00"
