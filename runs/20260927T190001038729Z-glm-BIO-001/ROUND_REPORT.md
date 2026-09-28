@@ -40,3 +40,10 @@
 - **P1 E2 同 cohort**：單一 held-gene 測試集 T（770 列、全組）——LEAKY 訓練含 sibling、CLEAN 為 sibling-free 全域均值參考（group-mean 估計器之唯一 sibling-free 估計，退化如實記錄）；gap 0.8776 於相同 cohort。
 - **P1 正名**：headline 改為「1 preregistered E2」；D1/D3/D4 明列 POST_HOC。
 - **P2**：獨立驗證器 v3 同步 E2 設計（V0 same-rows 新增）；驗證 JSON 以 canonical LF 寫出；manifest 含兩個 GEO .gz 輸入；LITERATURE_MAP/dataset_map 撤回數字全部替換。
+
+## Remediation v4（Convergence-3，Codex P1 誠實處理）
+- **P1 E2 負結果**：CLEAN 真正過濾 sibling rows 後訓練集為空（每組含 held genes）——無有效 sibling-free 估計器。**preregistered E2 記為 FAILED/INCONCLUSIVE**（verdict: E2_INCONCLUSIVE_SIBLING_FREE_CLEAN_NOT_CONSTRUCTIBLE；group_leak_gap=null）。未調切分、未救 PASS。
+- **修訂設計另開 admitted round**：runs/20260928T172735194406Z-glm-BIO-001（MODEL_ABLATION；group-aware 0.8776 vs structure-blind 0.0；僅宣稱 group 結構訊號，非洩漏）。
+- **P1 verdict 比較**：獨立驗證器 v4 重算 expected verdict 並與 committed 比對（V6 ✓ 一致：E2_INCONCLUSIVE）。
+- **P2 canonical bytes**：驗證 JSON 以 write_bytes LF 輸出。
+- **誠實差異記錄**：donor POST_HOC gap 之獨立實作得 0.905 vs 主實作 0.1616——estimator 敏感，已記 documented discrepancy，不強迫一致；該 POST_HOC 數字不得單獨引用。
