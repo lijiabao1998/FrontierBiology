@@ -51,6 +51,9 @@ def gen(seed=42, n_genes=60, n_groups=8, n_donors=4, n_batches=3, n_cells=6000):
 
 
 def evaluate(cells, ggrp, regime):
+    """(v2) donor regimes: T = held-group cells of donors {0,1,2}; LEAKY trains
+    on all non-held rows, CLEAN trains only on non-T-donor (donor 3) rows;
+    identical T in both regimes."""
     """Independent split + estimator. Returns (pearson, mse, test_row_ids).
 
     frozen/donor regimes: whole-group holdout (groups 6,7).
@@ -71,6 +74,11 @@ def evaluate(cells, ggrp, regime):
     else:
         train = [c for c in cells if c[1] not in held]
         test = [c for c in cells if c[1] in held]
+    if regime in ("donor_leak", "donor_clean"):
+        t_donors = sorted({d for _, _, d, _, _ in test})[:3]
+        test = [c for c in test if c[2] in t_donors]
+        if regime == "donor_clean":
+            train = [c for c in train if c[2] not in t_donors]
     gmean = defaultdict(list)
     dmean = defaultdict(list)
     glob = []
@@ -89,6 +97,8 @@ def evaluate(cells, ggrp, regime):
             p = gm.get(grp, mu)
         elif regime == "donor_leak":
             p = dm.get(d, mu) + (gm.get(grp, mu) - mu)
+        elif regime == "donor_clean":
+            p = gm.get(grp, mu)
         else:  # donor_clean
             p = gm.get(grp, mu)
         preds.append(p)

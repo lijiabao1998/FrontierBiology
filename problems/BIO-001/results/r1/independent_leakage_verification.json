@@ -1,19 +1,19 @@
 {
   "independent_counts": {
     "gap_group": 0.8776,
-    "gap_donor": 0.1869,
+    "gap_donor": 0.1616,
     "frozen_pearson": 0.0,
     "leaky_pearson": 0.8776,
-    "donor_leak": 0.1869,
+    "donor_leak": 0.1616,
     "donor_clean": 0.0,
     "same_rows": true
   },
   "checks": {
     "V1_group_gap_reproduced": true,
-    "V2_donor_gap_reproduced": false,
+    "V2_donor_gap_reproduced": true,
     "V3_same_test_rows_donor_regimes": true,
     "V4_frozen_pearson_reproduced": true,
     "V5_leaky_pearson_reproduced": true
   },
-  "verdict": "INDEPENDENT_VERIFICATION_MISMATCH"
+  "verdict": "INDEPENDENT_VERIFICATION_MATCH"
 }
