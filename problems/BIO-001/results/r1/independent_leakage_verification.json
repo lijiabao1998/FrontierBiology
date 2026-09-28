@@ -10,10 +10,10 @@
   },
   "checks": {
     "V1_group_gap_reproduced": true,
-    "V2_donor_gap_reproduced": true,
+    "V2_donor_gap_reproduced": false,
     "V3_same_test_rows_donor_regimes": true,
     "V4_frozen_pearson_reproduced": true,
     "V5_leaky_pearson_reproduced": true
   },
-  "verdict": "INDEPENDENT_VERIFICATION_MATCH"
+  "verdict": "INDEPENDENT_VERIFICATION_MISMATCH"
 }

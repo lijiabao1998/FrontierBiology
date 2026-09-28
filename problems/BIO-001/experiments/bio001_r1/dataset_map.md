@@ -25,5 +25,5 @@ guide_identity 慣例（由實資料確認）：`<GENE>_<guide>__<GENE>_<guide>`
 ## 下一步資料行動（精確）
 
 1. `pip install --target FrontierBiology/problems/BIO-001/experiments/.deps numpy scipy`（僅在 repo 內）。
-2. 串流解析 mtx.gz 的目標基因列（103 個單擾動 + control 的 ~9k 基因面板），或直接全量 sparse 載入。
+2. 串流解析 mtx.gz 的目標基因列（105 個單擾動 [corrected] + control 的 ~9k 基因面板），或直接全量 sparse 載入。
 3. 用本輪已交付的 `split_validator`/evaluator（`bio001_split_evaluator.py` 介面不變）跑真實 Norman：frozen（gene-function-grouped，需 GO/pathway 資源清單——下輪另查授權）vs random split 的 leakage gap 實測。

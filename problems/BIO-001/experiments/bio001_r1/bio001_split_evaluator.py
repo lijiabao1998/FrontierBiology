@@ -171,16 +171,16 @@ def run_split(cells, gene_group, mode: str, held_groups=(6, 7), hold_frac: float
         train = [c for c in cells if c[0] not in held_genes]
         test = [c for c in cells if c[0] in held_genes]
     if donor_holdout:
-        # Codex P1: CLEAN vs LEAKY must be compared on IDENTICAL test rows T.
-        # T = held-out-group cells from ALL donors (both regimes). CLEAN:
-        # training excludes every test-donor row and the estimator has no
-        # donor information at all. LEAKY: only the leakage condition changes
-        # (test-donor rows enter training, donor means become available).
-        test_donors = sorted({d for _, _, d, _, _ in test})
-        if mode == "donorleak":
-            pass  # leaky: keep all-donor training rows and donor-mean estimator
-        else:  # donorclean
-            train = [c for c in train if c[2] not in test_donors]
+        # Codex convergence P1: CLEAN and LEAKY must differ in DONOR EXPOSURE
+        # while scoring IDENTICAL test rows T. T = held-group cells of donors
+        # {0,1,2} (multi-donor). LEAKY trains on all non-held rows (T donors'
+        # rows included, donor means learnable). CLEAN trains ONLY on rows of
+        # the non-T donor (donor 3) with the donor-blind estimator, so no
+        # T-donor context enters training. Predictions scored on the same T.
+        t_donors = sorted({d for _, _, d, _, _ in test})[:3]
+        test = [c for c in test if c[2] in t_donors]
+        if mode == "donorclean":
+            train = [c for c in train if c[2] not in t_donors]
     # estimators
     grp_mean = defaultdict(list)
     glob, don = [], defaultdict(list)
@@ -214,8 +214,10 @@ def main() -> int:
     # Codex P1 (convergence): CLEAN and LEAKY share IDENTICAL test rows T
     # (held-out-group cells, all donors) and identical training rows; the ONLY
     # difference is the leakage condition (donor-label channel open or not).
-    dl_p, dl_mse, _, dl_rows = run_split(cells, gene_group, "donorleak")
-    dc_p, dc_mse, _, dc_rows = run_split(cells, gene_group, "donorclean")
+    dl_p, dl_mse, _, dl_rows = run_split(cells, gene_group, "donorleak",
+                                         donor_holdout=True)
+    dc_p, dc_mse, _, dc_rows = run_split(cells, gene_group, "donorclean",
+                                         donor_holdout=True)
     same_T = dl_rows == dc_rows
     # recorded honestly (Codex): on the donor-3-only subset BOTH predictors
     # are constant and both Pearson values are 0 — the gap exists only across
@@ -229,7 +231,7 @@ def main() -> int:
         "group_leak_gap": round(leaky_p - frozen_p, 4),
         "donor_leak_gap_vs_donorclean": round(dl_p - dc_p, 4),
         "same_test_rows_invariant": same_T,
-        "degenerate_subset_note": "on donor-3-only rows both predictors are constant (Pearson 0); gap is defined on the full multi-donor T",
+        "donor_exposure_note": "LEAKY train includes T-donor rows; CLEAN train excludes them (non-T donor rows only); T identical in both (Codex convergence P1)",
         "donor_leak_gap_note": "Codex-review corrected: donor leakage is now "
                                "measured against a donor-held-out split (test "
                                "donors unseen in training), not merely against "

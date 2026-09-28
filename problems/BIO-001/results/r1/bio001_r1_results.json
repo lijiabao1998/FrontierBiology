@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T05:41:25+00:00",
+  "generated": "2026-09-28T07:34:52+00:00",
   "norman_audit": {
     "file": "GSE133344_filtered_cell_identities.csv.gz",
     "cells_total": 111445,
@@ -49,12 +49,12 @@
     "frozen_mse": 0.794,
     "leaky_pearson": 0.8776,
     "leaky_mse": 0.115,
-    "donorleak_pearson": 0.1869,
+    "donorleak_pearson": 0.1616,
     "donorclean_pearson": 0.0,
     "group_leak_gap": 0.8776,
-    "donor_leak_gap_vs_donorclean": 0.1869,
+    "donor_leak_gap_vs_donorclean": 0.1616,
     "same_test_rows_invariant": true,
-    "degenerate_subset_note": "on donor-3-only rows both predictors are constant (Pearson 0); gap is defined on the full multi-donor T",
+    "donor_exposure_note": "LEAKY train includes T-donor rows; CLEAN train excludes them (non-T donor rows only); T identical in both (Codex convergence P1)",
     "donor_leak_gap_note": "Codex-review corrected: donor leakage is now measured against a donor-held-out split (test donors unseen in training), not merely against the estimator feature being switched off."
   },
   "pre_registered_checks": {

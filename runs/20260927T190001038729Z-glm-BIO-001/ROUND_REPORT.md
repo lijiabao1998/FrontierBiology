@@ -6,7 +6,7 @@
 - 本輪判定：**LEAKAGE_DEMO_PASS**（4/4 預登記 checks）
 
 ## 交付（全部 stdlib、確定性）
-1. **真實資料審計**（dataset_map.md＋results/r1/bio001_r1_results.json）：Norman 2019 GSE133344 metadata 實測——111,445 cells（81,542 single／29,273 control／630 dual）、103 個單擾動、每擾動 126–3,824 cells（median 463）；BLAKE2b 5-fold 分配已生成。
+1. **真實資料審計**（dataset_map.md＋results/r1/bio001_r1_results.json）：Norman 2019 GSE133344 metadata 實測——111,445 cells（81,542 single／29,273 control／630 dual）、105 個單擾動 [corrected]、每擾動 126–3,824 cells（median 463）；BLAKE2b 5-fold 分配已生成。
 2. **split validator＋evaluator**（`bio001_split_evaluator.py`）：frozen（function-grouped）/ leaky（同組鄰居留在 train）/ donorleak 三模式，group-mean 基線、Pearson/MSE。
 3. **洩漏負控制（合成 ground truth，seed 42/12345）**：frozen Pearson **0.000**（留出組無任何同組訓練訊號——正確的零）vs leaky Pearson **0.878**（gap **0.878** ≥ 0.2 ✓）；MSE 0.794→0.115；donor 洩漏 gap **0.187** ≥ 0.1 ✓。這以可控實驗量化了 Systema/PerturbVAE 在真實 benchmark 報告的膨脹機制。
 4. **DATA_TRACTABILITY_BLOCKED（誠實記錄）**：表達矩陣 1.1GB mtx.gz 未下載（stdlib 時間盒）；解除路徑寫明（numpy/scipy in-repo 或串流取樣）。**未偽造任何真實資料結果**。
@@ -27,7 +27,7 @@
 - **P1 donor 對照**：新增 donor_holdout（donor 3 僅出現在 test）之 donor-clean split；donor_leak_gap 改為 vs donor-clean（0.1869 ≥ 0.1 ✓）——原比較只反映特徵開關。
 - **P1 獨立覆核**：`independent_check.py`（regex+memoisation 結構相異實作）6/6 checks 吻合（cells_total、class_counts、105 singles、median、fold 決定性、spot identities）；round.json 補 independent_check 紀錄。
 - **P2 hashes**：重算並通過 `sha256sum -c`。
-- 收窄宣稱：初版「103 個單擾動／630 dual cells」等數字撤回；dataset_map.md 已註記修正。
+- 收窄宣稱：初版「105 個單擾動 [corrected]／630 dual cells」等數字撤回；dataset_map.md 已註記修正。
 
 ## Remediation v2（Convergence Wave，Codex 二審回應）
 - P1 same-T donor 對照：CLEAN（donor-blind）vs LEAKY（donor-label 通道開）共用完全相同之 test rows T 與訓練列；same_test_rows_invariant=true；gap 0.1869 於相同列上定義；donor-3-only 子集兩 predictor 皆常數（Pearson 0）之事實如實記錄。
