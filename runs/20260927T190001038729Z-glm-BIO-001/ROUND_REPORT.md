@@ -28,3 +28,10 @@
 - **P1 獨立覆核**：`independent_check.py`（regex+memoisation 結構相異實作）6/6 checks 吻合（cells_total、class_counts、105 singles、median、fold 決定性、spot identities）；round.json 補 independent_check 紀錄。
 - **P2 hashes**：重算並通過 `sha256sum -c`。
 - 收窄宣稱：初版「103 個單擾動／630 dual cells」等數字撤回；dataset_map.md 已註記修正。
+
+## Remediation v2（Convergence Wave，Codex 二審回應）
+- P1 same-T donor 對照：CLEAN（donor-blind）vs LEAKY（donor-label 通道開）共用完全相同之 test rows T 與訓練列；same_test_rows_invariant=true；gap 0.1869 於相同列上定義；donor-3-only 子集兩 predictor 皆常數（Pearson 0）之事實如實記錄。
+- P1 正名：僅 E2（group gap ≥0.2）為 preregistered；D1/D3/D4 改標 post_hoc_diagnostics，不回寫歷史。
+- P1 獨立洩漏驗證：independent_leakage_verifier.py（不 import 主 evaluator，自行構造 split/預測/Pearson）5/5 吻合主 verdict——V1 group gap、V2 donor gap、V3 same-rows、V4/V5 frozen/leaky 重現。
+- P2 manifest：verify_manifest.py + 全輸入（.gz）與輸出 hash，最後生成，全綠。
+- P2 round.json summary 103→105 singles 已更正。
