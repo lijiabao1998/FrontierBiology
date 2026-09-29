@@ -1,0 +1,88 @@
+{
+  "norman_audit": {
+    "file": "GSE133344_filtered_cell_identities.csv.gz",
+    "cells_total": 111445,
+    "cells_good_coverage": 104507,
+    "class_counts": {
+      "single": 57831,
+      "dual": 41759,
+      "control": 11855
+    },
+    "single_perturbations": 105,
+    "single_perturbation_cells": 57831,
+    "dual_perturbations": 131,
+    "cells_per_single_perturbation": {
+      "min": 113,
+      "median": 495,
+      "max": 1960,
+      "p10": 241,
+      "p90": 874
+    },
+    "smallest_5": {
+      "PLK4": 113,
+      "HES7": 126,
+      "ZBTB10": 162,
+      "NIT1": 192,
+      "CITED1": 215
+    },
+    "largest_5": {
+      "KLF1": 1960,
+      "BAK1": 1457,
+      "CEBPE": 1233,
+      "UBASH3B": 1202,
+      "ETS2": 1201
+    },
+    "blake2b_fold_sizes_over_singles": {
+      "0": 23,
+      "1": 22,
+      "2": 17,
+      "3": 20,
+      "4": 23
+    }
+  },
+  "synthetic_demo": {
+    "n_cells": 6000,
+    "n_test_E2": 770,
+    "E2_design": "single held-gene test set T; regimes differ only in whether functional siblings enter training",
+    "same_test_rows_invariant": true,
+    "clean_reference_note": "CLEAN training set size after sibling removal: 0. Under the preregistered per-group 20% holdout every group contains held genes, so sibling removal EMPTIES the CLEAN training set: no valid sibling-free estimator exists. Per owner instruction the preregistered E2 is recorded as FAILED/INCONCLUSIVE; the revised design (model ablation) is retained as exploratory/unverified; its earlier admission and PASS labels are withdrawn.",
+    "n_test_cohorts_identical": true,
+    "frozen_pearson": null,
+    "frozen_train_size": 0,
+    "leaky_pearson": 0.8776,
+    "leaky_mse": 0.115,
+    "donorleak_pearson": 0.1616,
+    "donorclean_pearson": 0.0,
+    "same_test_rows_invariant_donor": true,
+    "donor_design": {
+      "held_groups": [
+        6,
+        7
+      ],
+      "test_donors": [
+        0,
+        1,
+        2
+      ],
+      "n_test": 1105,
+      "n_test_clean": 1105,
+      "n_train_leaky": 4504,
+      "n_train_clean": 1100,
+      "claim_status": "POST_HOC_EXPOSURE_AND_ESTIMATOR_COMPARISON"
+    },
+    "group_leak_gap": null,
+    "donor_leak_gap_vs_donorclean": 0.1616,
+    "donor_exposure_note": "POST_HOC: test groups 6/7 and donors 0/1/2; LEAKY predicts donor means from non-held groups/all donors; CLEAN predicts the constant mean from non-held groups/donor 3. Exposure and estimator both differ; no isolated leakage claim"
+  },
+  "pre_registered_checks": {
+    "E2_group_leak_gap_ge_0.2": false,
+    "E2_status": "FAILED_INCONCLUSIVE_NO_SIBLING_FREE_ESTIMATOR"
+  },
+  "post_hoc_diagnostics": {
+    "D1_frozen_split_low_signal": null,
+    "D3_donor_leak_gap_ge_0.1": true,
+    "D4_leaky_mse_better_than_frozen": null
+  },
+  "verdict": "E2_INCONCLUSIVE_SIBLING_FREE_CLEAN_NOT_CONSTRUCTIBLE",
+  "e2_status": "FAILED_INCONCLUSIVE_NO_SIBLING_FREE_ESTIMATOR"
+}

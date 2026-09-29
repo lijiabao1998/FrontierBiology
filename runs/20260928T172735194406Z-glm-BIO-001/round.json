@@ -1,0 +1,59 @@
+{
+  "round_id": "20260928T172735194406Z-glm-BIO-001",
+  "problem_id": "BIO-001",
+  "agent": "glm",
+  "branch": "glm/BIO-001-baseline-r1",
+  "base_sha": "4fdac6104e9c69273fe328c99df51fb83222d733",
+  "started_at": "2026-09-28T17:27:35.194406+00:00",
+  "state": "DRAFT",
+  "acceptance": "WITHDRAWN as a confirmatory acceptance contract. The historical text did not freeze a numerical success threshold; the evaluator nevertheless applied 0.2. No retrospective threshold is added. Existing ablation values are descriptive only; the original record is preserved in historical_record_at_9590a99.json.",
+  "not_done": "No valid current-round four-route retrieval, no independently verified r2 result, no preregistered pass threshold, no new literature claim, no expression matrix analysis. Do not continue this record as an admitted round.",
+  "budget": {
+    "wall_minutes": 60,
+    "usd": 0,
+    "max_trials": 100
+  },
+  "preflight": {
+    "checked_at": null,
+    "verdict": "BLOCKED",
+    "sources_read": false,
+    "scope_compared": false,
+    "retractions_checked": false,
+    "licenses_checked": false,
+    "safety_checked": false,
+    "baseline_identified": true,
+    "acceptance_frozen": false,
+    "queries": [],
+    "sources": [],
+    "limitations": "The historical general and discipline routes reused r1; criticism cited governance documents. No valid four-route r2 search is evidenced. Historical entries are preserved, not silently relabelled as new retrieval.",
+    "scope_comparison": "No current literature status established for r2. The repair only withdraws unsupported claims.",
+    "baseline": "Descriptive replay of the existing synthetic group-aware versus constant-mean comparison.",
+    "historical_record": "historical_record_at_9590a99.json"
+  },
+  "artifacts": [
+    "problems/BIO-001/experiments/bio001_r2_ablation/eval_model_ablation.py",
+    "problems/BIO-001/results/r2/bio001_r2_ablation_results.json"
+  ],
+  "result": {
+    "state": "EXPLORATORY_UNVERIFIED",
+    "verdict": "EXPLORATORY_UNVERIFIED",
+    "summary": "Descriptive synthetic values only: group-aware Pearson 0.8776, structure-blind 0.0, gap 0.8776. No scientific PASS label, independent validation, leakage or biological claim.",
+    "independently_verified": false,
+    "success_threshold": null,
+    "commands": [
+      {
+        "cwd": "problems/BIO-001",
+        "command": "python -B experiments/bio001_r2_ablation/eval_model_ablation.py",
+        "role": "author replay only; not independent verification"
+      }
+    ],
+    "verification_status": "NOT_RUN_FOR_R2; the earlier r1 verifier command did not validate r2",
+    "historical_record": "historical_record_at_9590a99.json"
+  },
+  "record_status": "EXPLORATORY_UNVERIFIED_ADMISSION_WITHDRAWN",
+  "state_note": "DRAFT denotes not admitted under the pinned record schema; exploratory outputs already exist. It does not mean the historical execution did not occur.",
+  "withdrawn_admission": {
+    "original_admitted_at": "2026-09-28T17:28:16.564211+00:00",
+    "reason": "Current-round search, frozen success threshold and independent verification requirements were not satisfied. No retrospective readmission."
+  }
+}

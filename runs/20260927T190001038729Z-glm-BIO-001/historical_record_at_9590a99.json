@@ -1,0 +1,139 @@
+{
+  "round_id": "20260927T190001038729Z-glm-BIO-001",
+  "problem_id": "BIO-001",
+  "agent": "glm",
+  "branch": "glm/BIO-001-baseline-r1",
+  "base_sha": "e0c162b2705760eee8cc22c1400da2370984fac4",
+  "started_at": "2026-09-27T19:00:01.038729+00:00",
+  "state": "ADMITTED",
+  "acceptance": "Scope 凍結（動手前）：r1 只做資料地基與 evaluator，不訓練任何大型模型。(1) fresh 四路檢索（已完成 6 query）＋dataset/license audit（dataset_map.md）。(2) 下載並審計 REAL Norman 2019 (GSE133344) metadata：filtered_cell_identities.csv.gz（1.9MB，實測）＋filtered_genes.tsv.gz（259K）——提取 target gene、單/雙擾動與 control 結構、每擾動細胞數分佈；表達矩陣（1.1GB mtx.gz）記 DATA_TRACTABILITY_BLOCKED（stdlib 串流成本＋本輪時間盒），附精確 next action。(3) split validator＋evaluator（stdlib、確定性）：BLAKE2b 決定性 perturbation-level 留出；在合成 ground truth（seeded，已知 functional groups/donor/batch 效應）上：(a) 凍結留出之 group-mean 基線 Pearson/MSE；(b) NEGATIVE CONTROL：leaky split（同 functional group 個別基因留在 train）必須顯著膨脹 Pearson——量化 leakage gap；(c) donor 洩漏變體必須同樣被偵測。判定門檻於執行前凍結：leak gap 定義為 leaky_pearson − frozen_pearson ≥ 0.2 才算 demo 成功（合成已知效應強度下）。(4) 失敗日誌＋raw results＋hashes＋round report。不宣稱任何真實細胞生物學機制；不接觸臨床/人體資料。",
+  "not_done": "不訓練深度模型；不下載 1.1GB 表達矩陣（記 BLOCKED tractability）；不做 pathway/GO 資料庫離線整合（下一輪，需資源清單）；不在真實資料上宣稱泛化評估（表達矩陣未處理）；不宣稱解決 BIO-001 一般問題。",
+  "budget": {
+    "wall_minutes": 90,
+    "usd": 0,
+    "max_trials": 100
+  },
+  "preflight": {
+    "checked_at": "2026-09-27T19:04:30+00:00",
+    "verdict": "NO_RESOLUTION_FOUND",
+    "sources_read": true,
+    "scope_compared": true,
+    "retractions_checked": true,
+    "licenses_checked": true,
+    "safety_checked": true,
+    "baseline_identified": true,
+    "acceptance_frozen": true,
+    "queries": [
+      {
+        "query": "\"single-cell perturbation response prediction\" benchmark generalization Nature Methods evaluation",
+        "engine": "zcode-websearch(web_search_prime)",
+        "category": "general",
+        "outcome": "定位 primary Wei et al. Nat Methods 2025；發現 PerturbVAE leakage-aware benchmark（MIT, ~2026）"
+      },
+      {
+        "query": "Norman 2019 perturb-seq GSE133344 data download size format counts csv",
+        "engine": "zcode-websearch(web_search_prime)",
+        "category": "discipline",
+        "outcome": "GEO GSE133344；dense CSV ~1GB 說法 → 實測見下"
+      },
+      {
+        "query": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE133nnn/GSE133344/suppl/ (curl HEAD+DIR)",
+        "engine": "curl(ftp.ncbi.nlm.nih.gov)",
+        "category": "discipline",
+        "outcome": "實測：identities 1.9MB、genes 259K、matrix.mtx.gz 1.1G；已下載前兩檔至 lit_data/"
+      },
+      {
+        "query": "https://github.com/brhanufen/perturbvae (webfetch)",
+        "engine": "zcode-webfetch(github)",
+        "category": "solution",
+        "outcome": "split 方法論：BLAKE2b 決定性、A(random)/B(function-grouped)/C(combinatorial)；A→B Pearson 0.522→0.257 (Norman)；repo 無內建資料；MIT"
+      },
+      {
+        "query": "perturbation response prediction \"simple baselines\" hard to beat mean baseline single-cell generalization unsolved",
+        "engine": "zcode-websearch(web_search_prime)",
+        "category": "solution",
+        "outcome": "「baseline gap」2026 preprint；mean baseline 難以擊敗為公認未解議題"
+      },
+      {
+        "query": "\"perturbation response\" single-cell prediction benchmark criticism flawed leakage 2025",
+        "engine": "zcode-websearch(web_search_prime)",
+        "category": "criticism",
+        "outcome": "Systema（Nat Biotechnol 44:1050-1059, 2025/26）：benchmarks 被 systematic variation 灌水；無 erratum 需求；方向與本題一致"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://github.com/brhanufen/perturbvae",
+        "title": "PerturbVAE: leakage-aware benchmark for single-cell perturbation-response prediction (Lin et al., MIT)",
+        "kind": "primary",
+        "supports": "leakage 分類與 split 設計（A/B/C）、量化 leakage gap；本輪 split 設計引用其方法論（獨立重實作）"
+      },
+      {
+        "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE133nnn/GSE133344/suppl/",
+        "title": "GSE133344 (Norman et al., Science 2019) GEO supplementary（實測檔案清單）",
+        "kind": "primary",
+        "supports": "真實資料可得性、大小、格式；identities/genes 已下載審計"
+      },
+      {
+        "url": "https://www.nature.com/articles/s41592-025-02980-0",
+        "title": "Benchmarking algorithms for generalizable single-cell perturbation response prediction (Wei et al., Nat Methods 2025)",
+        "kind": "primary",
+        "supports": "題卡 primary；本次 fetch 被 cookie 牆（303 idp.nature.com）擋下，僅摘要層級經搜尋結果確認——記 limitations"
+      }
+    ],
+    "limitations": "6 query；Nature primary 全文/摘要頁被 cookie 牆擋（僅 secondary 確認）；表達矩陣 1.1GB 未下載（tractability）；PerturbVAE 數值（0.522→0.257）來自其 repo/報告層級，未獨立重算；「無搜尋結果」非未解證明。",
+    "scope_comparison": "題卡 scope＝跨細胞情境與未見擾動之可靠泛化。文獻確認：generalization/leakage 為公認未解（Systema、baseline gap、PerturbVAE 的 A→B gap）→ 無同範圍解答；這些是方法/評估進展，不關閉本題。題卡 known_result 無需更新。",
+    "baseline": "baseline＝(a) 真實 Norman metadata 之擾動結構審計（真資料）；(b) 合成 ground truth 上之 group-mean vs global-mean 基線＋frozen/leaky split 對照（evaluator 校準）；同一 split/evaluator 介面下輪直接接真實表達矩陣。"
+  },
+  "artifacts": [
+    "runs/20260927T190001038729Z-glm-BIO-001/LITERATURE_MAP.md",
+    "runs/20260927T190001038729Z-glm-BIO-001/ROUND_REPORT.md",
+    "problems/BIO-001/experiments/bio001_r1/bio001_split_evaluator.py",
+    "problems/BIO-001/experiments/bio001_r1/dataset_map.md",
+    "problems/BIO-001/experiments/lit_data/GSE133344_filtered_cell_identities.csv.gz",
+    "problems/BIO-001/experiments/lit_data/GSE133344_filtered_genes.tsv.gz",
+    "problems/BIO-001/results/r1/bio001_r1_results.json",
+    "problems/BIO-001/results/r1/hashes.txt"
+  ],
+  "result": {
+    "state": "ROUND_FINISHED",
+    "verdict": "NO_RESOLUTION_FOUND",
+    "summary": "真實 Norman metadata 審計（111,445 cells、105 singles）；frozen/leaky/donor 三模式 evaluator；洩漏負控制 PASS（gap 0.878/0.187）；表達矩陣 1.1GB 記 DATA_TRACTABILITY_BLOCKED 未偽造。",
+    "wall_minutes_used_approx": 35,
+    "independent_check": {
+      "scripts": [
+        "problems/BIO-001/experiments/bio001_r1/independent_check.py",
+        "problems/BIO-001/experiments/bio001_r1/independent_leakage_verifier.py"
+      ],
+      "scope": "metadata counts + fold assignment + FULL main-verdict reproduction (frozen/leaky/donor gaps, same-test-rows invariant)",
+      "checks_passed": "6/6 + 5/5",
+      "verdict": "INDEPENDENT_VERIFICATION_MATCH"
+    },
+    "remediation": {
+      "codex_findings": 4,
+      "P1_fixed": 3,
+      "P2_fixed": 1,
+      "corrected_counts": {
+        "single": 57831,
+        "dual": 41759,
+        "control": 11855,
+        "single_perturbations": 105
+      },
+      "superseded_claims": [
+        "81,542 single / 630 dual / 29,273 control / 103 singles"
+      ]
+    },
+    "remediation_v2": {
+      "post_hoc_relabel": "only E2 (group gap >= 0.2) was preregistered; D1/D3/D4 relabelled post_hoc_diagnostics (Codex P1)",
+      "same_T_donor_comparison": "CLEAN vs LEAKY on identical test rows T; degenerate donor-3 subset recorded honestly",
+      "main_verdict": "LEAKAGE_DEMO_PASS stands on preregistered E2 + same-T invariant"
+    },
+    "remediation_v3": {
+      "E2_outcome": "FAILED_INCONCLUSIVE_NO_SIBLING_FREE_ESTIMATOR (CLEAN train size 0 after true sibling removal; group_leak_gap null)",
+      "verdict": "E2_INCONCLUSIVE_SIBLING_FREE_CLEAN_NOT_CONSTRUCTIBLE",
+      "independent_verification": "v4 verifier 5/6 checks incl V6 committed-verdict match; V3 donor-gap estimator discrepancy 0.905-vs-0.1616 DOCUMENTED not forced",
+      "revised_design": "model ablation admitted as separate round runs/20260928T172735194406Z-glm-BIO-001"
+    }
+  },
+  "admitted_at": "2026-09-27T19:04:29.566000+00:00"
+}
