@@ -43,12 +43,14 @@ Commands and outcomes are also recorded in
    derived from its own CLEAN cohort, not trusted result status fields.
 4. r2 descriptive replay: exit 0, EXPLORATORY_UNVERIFIED, no threshold and no
    volatile timestamp.
-5. Convergence regression: 6/6 tests pass, including seven deliberate metric,
+5. Convergence regression: 7/7 tests pass, including seven deliberate metric,
    cohort and status corruptions; invalid evidence makes the verifier CLI exit 1;
-   changed/empty manifest negative cases fail; three producer/verifier replays
+   changed/empty manifest negative cases fail; four producer/verifier replays
    preserve exact LF result bytes. The first test run exposed a test-harness
    dotted-path bug at the literal key suffix `0.2`; the failure is retained in
    convergence_validation.json and was fixed without changing scientific data.
+   The follow-up metadata negative control alters an audit total, seeds stale MATCH
+   output, then requires exit 1 and replacement by the newly computed MISMATCH.
 6. Manifest: 15/15 entries match working bytes. `verify_manifest.py --git-ref :`
    verifies the staged snapshot and `--git-ref HEAD` verifies committed blobs,
    including the manifest itself. Text artifacts changed by this repair use LF;
@@ -71,3 +73,13 @@ preregistration was recovered for r2. Any renewed research requires a new honest
 preflight and frozen design. Existing data-license/source limitations in r1 are
 unchanged; no clinical, causal or real-expression result is asserted. Independent
 review of this correction and the merge decision belong to the parent reviewer.
+
+## Automated review follow-up
+
+Review 5353487166 on c00ed96 identified one P2: metadata replay only printed its
+new payload and could leave the saved verification artifact stale. The checker
+now writes the same payload to independent_metadata_verification.json using LF
+bytes, whether comparison succeeds or fails. The successful replay preserves exact
+bytes, and an isolated corrupted-audit case replaces a seeded stale MATCH with
+MISMATCH and exits 1. The seven-test suite passes. This changes evidence persistence,
+not the metadata calculation, scientific inputs, E2 verdict or r2 status.

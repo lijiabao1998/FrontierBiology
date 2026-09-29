@@ -5,6 +5,7 @@ import importlib.util
 import json
 import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -64,6 +65,28 @@ class EvidenceChecks(unittest.TestCase):
         self.assertEqual(result.returncode, 1)
         self.assertIn("INDEPENDENT_VERIFICATION_MISMATCH", result.stdout)
 
+    def test_metadata_replay_replaces_stale_match_with_mismatch(self):
+        # Use an isolated directory inside the owned worktree, never the evidence
+        # inputs. Verify its resolved scope before TemporaryDirectory cleans it.
+        with tempfile.TemporaryDirectory(prefix="metadata-negative-", dir=ROOT) as directory:
+            target = Path(directory)
+            self.assertTrue(target.resolve().is_relative_to(ROOT.resolve()))
+            altered = copy.deepcopy(self.result)
+            altered["norman_audit"]["cells_total"] += 1
+            source = target / "altered-audit.json"
+            output = target / "metadata-check.json"
+            source.write_bytes((json.dumps(altered) + "\n").encode("utf-8"))
+            output.write_bytes(b'{"verdict":"INDEPENDENT_CHECK_MATCH"}\n')
+            run = subprocess.run([sys.executable, "-B", str(HERE / "independent_check.py"),
+                                  "--result", str(source), "--output", str(output)],
+                                 capture_output=True, text=True)
+            self.assertEqual(run.returncode, 1, run.stderr)
+            payload = json.loads(output.read_bytes())
+            self.assertEqual(payload, json.loads(run.stdout))
+            self.assertEqual(payload["verdict"], "INDEPENDENT_CHECK_MISMATCH")
+            self.assertIs(payload["checks"]["cells_total"], False)
+            self.assertNotIn(b"\r\n", output.read_bytes())
+
     def test_manifest_detects_changed_bytes(self):
         statuses = manifest.check_entries(["0" * 64 + " *result.json"], lambda name: b"changed\n")
         self.assertEqual(statuses, [("MISMATCH", "result.json")])
@@ -78,6 +101,7 @@ class EvidenceChecks(unittest.TestCase):
 
     def test_existing_producer_replays_preserve_exact_bytes(self):
         pairs = [(HERE / "bio001_split_evaluator.py", ROOT / "results/r1/bio001_r1_results.json"),
+                 (HERE / "independent_check.py", ROOT / "results/r1/independent_metadata_verification.json"),
                  (HERE.parent / "bio001_r2_ablation/eval_model_ablation.py", ROOT / "results/r2/bio001_r2_ablation_results.json"),
                  (HERE / "independent_leakage_verifier.py", ROOT / "results/r1/independent_leakage_verification.json")]
         for script, output in pairs:

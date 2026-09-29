@@ -4,9 +4,11 @@
 Re-derives the committed audit numbers with a structurally different
 implementation: regex tokenisation + per-identity memoisation instead of the
 main script's split/loop parser, plus targeted spot assertions on the
-identities named in the review. Exit 0 iff every number matches.
+identities named in the review. Persists the same payload it prints, including
+failed comparisons, as canonical LF JSON. Exit 0 iff every number matches.
 """
 from __future__ import annotations
+import argparse
 import gzip
 import hashlib
 import json
@@ -14,7 +16,9 @@ import re
 from collections import Counter
 from pathlib import Path
 
-LIT = Path(__file__).resolve().parent.parent / "lit_data"
+HERE = Path(__file__).resolve().parent
+LIT = HERE.parent / "lit_data"
+RESULTS = HERE.parent.parent / "results" / "r1"
 TOKEN = re.compile(r"[^_]+")
 
 
@@ -28,6 +32,10 @@ def genes_of(identity: str) -> frozenset:
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--result", type=Path, default=RESULTS / "bio001_r1_results.json")
+    parser.add_argument("--output", type=Path, default=RESULTS / "independent_metadata_verification.json")
+    args = parser.parse_args()
     cache: dict[str, frozenset] = {}
     cells = 0
     cls = Counter()
@@ -58,9 +66,7 @@ def main() -> int:
     # deterministic fold re-derivation
     sizes = Counter(int(hashlib.blake2b(p.encode(), digest_size=8).hexdigest(), 16) % 5
                     for p in singles)
-    committed = json.loads(
-        (Path(__file__).resolve().parent.parent.parent / "results" / "r1" /
-         "bio001_r1_results.json").read_text(encoding="utf-8"))
+    committed = json.loads(args.result.read_text(encoding="utf-8"))
     na = committed["norman_audit"]
     checks = {
         "cells_total": cells == na["cells_total"],
@@ -72,12 +78,17 @@ def main() -> int:
         == na["blake2b_fold_sizes_over_singles"],
         "spot_identities": True,
     }
-    print(json.dumps({"independent_counts": {"cells_total": cells,
-                                             "class_counts": dict(cls),
-                                             "single_perturbations": len(singles)},
-                      "checks": checks,
-                      "verdict": "INDEPENDENT_CHECK_MATCH" if all(checks.values())
-                      else "INDEPENDENT_CHECK_MISMATCH"}, indent=2))
+    out = {"independent_counts": {"cells_total": cells,
+                                  "class_counts": dict(cls),
+                                  "single_perturbations": len(singles)},
+           "checks": checks,
+           "verdict": "INDEPENDENT_CHECK_MATCH" if all(checks.values())
+                      else "INDEPENDENT_CHECK_MISMATCH"}
+    # Always replace the prior evidence, including when a comparison fails.
+    # Canonical bytes and no wall-clock fields make identical replays stable.
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_bytes((json.dumps(out, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
+    print(json.dumps(out, ensure_ascii=False, indent=2))
     return 0 if all(checks.values()) else 1
 
 

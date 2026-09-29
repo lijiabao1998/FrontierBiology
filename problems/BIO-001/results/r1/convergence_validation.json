@@ -28,10 +28,11 @@
     {
       "command": "python -B problems/BIO-001/experiments/bio001_r1/tests_convergence.py",
       "exit_code": 0,
-      "tests_passed": 6,
+      "tests_passed": 7,
       "mutation_subcases": 7,
-      "deterministic_byte_replays": 3,
-      "negative_verifier_cli_expected_exit": 1
+      "deterministic_byte_replays": 4,
+      "negative_verifier_cli_expected_exit": 1,
+      "metadata_negative_control": "altered cells_total forces exit 1 and overwrites seeded stale MATCH with the stdout-identical MISMATCH payload"
     }
   ],
   "repair_failures_preserved": [
@@ -48,5 +49,11 @@
     "No fresh literature claim or retrospective admission",
     "Real expression matrix was not processed",
     "Donor comparison changes both exposure and estimator; post-hoc only"
-  ]
+  ],
+  "review_followup": {
+    "review_id": 5353487166,
+    "reviewed_sha": "c00ed960f2bfbb955347c02b0855f139e4ceb0b1",
+    "finding": "Persist metadata verification evidence during replay",
+    "outcome": "Default replay now always writes canonical metadata verification JSON, including comparison failures; positive byte replay and stale-MATCH replacement test pass"
+  }
 }
