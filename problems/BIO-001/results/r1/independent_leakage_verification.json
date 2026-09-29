@@ -1,0 +1,26 @@
+{
+  "independent_counts": {
+    "clean_train_size": 0,
+    "leaky_pearson": 0.8776,
+    "donor_leak": 0.905,
+    "donor_clean": 0.0,
+    "donor_gap": 0.905,
+    "same_rows": true,
+    "expected_verdict": "E2_INCONCLUSIVE_SIBLING_FREE_CLEAN_NOT_CONSTRUCTIBLE",
+    "committed_verdict": "E2_INCONCLUSIVE_SIBLING_FREE_CLEAN_NOT_CONSTRUCTIBLE"
+  },
+  "checks": {
+    "V1_clean_train_empty": true,
+    "V2_inconclusive_reproduced": true,
+    "V3_donor_gap_reproduced": false,
+    "V3_documented_discrepancy": {
+      "independent_gap": 0.905,
+      "production_gap": 0.1616,
+      "interpretation": "donor diagnostic is estimator-sensitive; the POST_HOC donor gap must not be quoted without stating the estimator variant"
+    },
+    "V4_same_test_rows_donor_regimes": true,
+    "V5_leaky_pearson_reproduced": true,
+    "V6_committed_top_level_verdict_matches": true
+  },
+  "verdict": "INDEPENDENT_VERIFICATION_MISMATCH"
+}

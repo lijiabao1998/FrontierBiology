@@ -1,0 +1,15 @@
+{
+  "independent": {
+    "gap": 0.8776,
+    "group_aware": 0.8776,
+    "structure_blind": 0.0
+  },
+  "checks": {
+    "V1_gap_reproduces": true,
+    "V2_pearsons_reproduce": true,
+    "V3_test_and_train_sizes": true,
+    "V4_threshold_scope": true,
+    "V5_no_volatile_fields": true
+  },
+  "verdict": "INDEPENDENT_VERIFICATION_MATCH"
+}
