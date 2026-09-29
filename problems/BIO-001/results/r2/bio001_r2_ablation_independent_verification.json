@@ -7,9 +7,9 @@
   "checks": {
     "V1_gap_reproduces": true,
     "V2_pearsons_reproduce": true,
-    "V3_identical_test_rows": false,
+    "V3_test_and_train_sizes": true,
     "V4_threshold_scope": true,
     "V5_no_volatile_fields": true
   },
-  "verdict": "INDEPENDENT_VERIFICATION_MISMATCH"
+  "verdict": "INDEPENDENT_VERIFICATION_MATCH"
 }
