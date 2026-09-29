@@ -8,12 +8,12 @@
   "ablation_gap": 0.8776,
   "group_aware_mse": 0.115,
   "structure_blind_mse": 0.5001,
-  "checks": {
-    "A2_identical_test_rows": true,
-    "A1_gap_recorded": true,
-    "A3_scope_label": true
+  "diagnostics": {
+    "shared_test_rows_by_construction": true,
+    "gap_recorded": true
   },
-  "verdict": "MODEL_ABLATION_PASS",
-  "claim_scope": "group structure carries predictable signal for held-gene cells; NO split/data-leakage claim",
-  "generated": "2026-09-28T17:29:17+00:00"
+  "verdict": "EXPLORATORY_UNVERIFIED",
+  "independently_verified": false,
+  "success_threshold": null,
+  "claim_scope": "Descriptive synthetic model comparison only; NO confirmatory, split/data-leakage or biological claim"
 }

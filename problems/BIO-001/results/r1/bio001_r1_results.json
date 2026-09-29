@@ -1,5 +1,4 @@
 {
-  "generated": "2026-09-28T17:26:33+00:00",
   "norman_audit": {
     "file": "GSE133344_filtered_cell_identities.csv.gz",
     "cells_total": 111445,
@@ -46,7 +45,7 @@
     "n_test_E2": 770,
     "E2_design": "single held-gene test set T; regimes differ only in whether functional siblings enter training",
     "same_test_rows_invariant": true,
-    "clean_reference_note": "CLEAN training set size after sibling removal: 0. Under the preregistered per-group 20% holdout every group contains held genes, so sibling removal EMPTIES the CLEAN training set: no valid sibling-free estimator exists. Per owner instruction the preregistered E2 is recorded as FAILED/INCONCLUSIVE; the revised design (model ablation) is admitted as a separate round.",
+    "clean_reference_note": "CLEAN training set size after sibling removal: 0. Under the preregistered per-group 20% holdout every group contains held genes, so sibling removal EMPTIES the CLEAN training set: no valid sibling-free estimator exists. Per owner instruction the preregistered E2 is recorded as FAILED/INCONCLUSIVE; the revised design (model ablation) is retained as exploratory/unverified; its earlier admission and PASS labels are withdrawn.",
     "n_test_cohorts_identical": true,
     "frozen_pearson": null,
     "frozen_train_size": 0,
@@ -55,9 +54,25 @@
     "donorleak_pearson": 0.1616,
     "donorclean_pearson": 0.0,
     "same_test_rows_invariant_donor": true,
+    "donor_design": {
+      "held_groups": [
+        6,
+        7
+      ],
+      "test_donors": [
+        0,
+        1,
+        2
+      ],
+      "n_test": 1105,
+      "n_test_clean": 1105,
+      "n_train_leaky": 4504,
+      "n_train_clean": 1100,
+      "claim_status": "POST_HOC_EXPOSURE_AND_ESTIMATOR_COMPARISON"
+    },
     "group_leak_gap": null,
     "donor_leak_gap_vs_donorclean": 0.1616,
-    "donor_exposure_note": "donor diagnostic (POST_HOC): LEAKY train includes T-donor rows; CLEAN excludes them"
+    "donor_exposure_note": "POST_HOC: test groups 6/7 and donors 0/1/2; LEAKY predicts donor means from non-held groups/all donors; CLEAN predicts the constant mean from non-held groups/donor 3. Exposure and estimator both differ; no isolated leakage claim"
   },
   "pre_registered_checks": {
     "E2_group_leak_gap_ge_0.2": false,

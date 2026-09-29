@@ -1,30 +1,19 @@
 #!/usr/bin/env python3
-"""BIO-001 revised-design round (model ablation) — runs/20260928T172735194406Z.
+"""BIO-001 exploratory model-ablation replay (not an admitted research round).
 
-The r1 preregistered E2 was recorded FAILED/INCONCLUSIVE: removing functional
-siblings from the CLEAN training set empties it entirely (every group contains
-held genes), so no valid sibling-free estimator exists and no leakage claim is
-possible. This admitted round tests a DIFFERENT, honestly-labeled question:
-
-  MODEL ABLATION — identical T (held-gene cells, 770 rows), identical training
-  rows (all non-held-gene cells). Two estimator variants:
-    group-aware   : predicts each test cell with its group's training mean
-    structure-blind: predicts the global training mean (no group structure)
-
-Frozen criteria (round.json acceptance):
-  A1 ablation gap = group_aware_pearson - structure_blind_pearson (recorded)
-  A2 both regimes scored on byte-identical test rows (invariant asserted)
-  A3 conclusion scope = "group structure carries predictable signal"
-     (MODEL_ABLATION_PASS/FAIL only; NEVER a split/data-leakage claim)
-
-Stdlib only, deterministic (seeds 42/12345 as in r1).
+The earlier admission/completion/PASS labels are withdrawn: no numerical pass
+threshold was frozen, the recorded searches were reused, and no independent r2
+verifier exists. Preserve descriptive synthetic values only. This script has no
+scientific PASS/FAIL cutoff. Exit 0 means its descriptive output was written,
+not that the result is independently verified or the research protocol passed.
+The group-aware and structure-blind estimators use the same existing train/test
+lists (seeds 42/12345); this is not a split/data-leakage demonstration.
 """
 from __future__ import annotations
 import json
 import math
 import random
 from collections import defaultdict
-from datetime import datetime, timezone
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -67,7 +56,6 @@ def main() -> int:
         held_genes.update(genes[:max(1, int(len(genes) * 0.2))])
     train = [c for c in cells if c[0] not in held_genes]
     test = [c for c in cells if c[0] in held_genes]
-    t_ids = sorted((g, grp, d, b) for g, grp, d, b, _ in test)
 
     gmean = defaultdict(list)
     glob = []
@@ -89,13 +77,11 @@ def main() -> int:
     sb_p, sb_mse = score(lambda g, grp: mu)
     gap = ga_p - sb_p
 
-    # A2: both regimes scored the identical test rows by construction; assert
-    a2 = len(test) == 770 and t_ids == sorted(t_ids)
-    checks = {"A2_identical_test_rows": a2,
-              "A1_gap_recorded": isinstance(gap, float),
-              "A3_scope_label": True}
-    verdict = "MODEL_ABLATION_PASS" if (gap >= 0.2 and all(checks.values())) \
-        else "MODEL_ABLATION_FAIL"
+    # Both scores traverse the same test list; this is an author diagnostic,
+    # not an independent validation or a retrospective pass criterion.
+    diagnostics = {"shared_test_rows_by_construction": True,
+                   "gap_recorded": isinstance(gap, float)}
+    verdict = "EXPLORATORY_UNVERIFIED"
     out = {"round_id": "20260928T172735194406Z-glm-BIO-001",
            "design": "MODEL_ABLATION (not a leakage demonstration)",
            "n_test": len(test), "n_train": len(train),
@@ -104,18 +90,18 @@ def main() -> int:
            "ablation_gap": round(gap, 4),
            "group_aware_mse": round(ga_mse, 4),
            "structure_blind_mse": round(sb_mse, 4),
-           "checks": checks, "verdict": verdict,
-           "claim_scope": "group structure carries predictable signal for "
-                          "held-gene cells; NO split/data-leakage claim",
-           "generated": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+           "diagnostics": diagnostics, "verdict": verdict,
+           "independently_verified": False, "success_threshold": None,
+           "claim_scope": "Descriptive synthetic model comparison only; "
+                          "NO confirmatory, split/data-leakage or biological claim"}
     RESULTS.mkdir(parents=True, exist_ok=True)
     (RESULTS / "bio001_r2_ablation_results.json").write_bytes(
         (json.dumps(out, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
     print(json.dumps({k: out[k] for k in ("group_aware_pearson",
                                           "structure_blind_pearson",
-                                          "ablation_gap", "checks", "verdict")},
+                                          "ablation_gap", "diagnostics", "verdict")},
                      ensure_ascii=False, indent=2))
-    return 0 if all(checks.values()) else 1
+    return 0
 
 
 if __name__ == "__main__":

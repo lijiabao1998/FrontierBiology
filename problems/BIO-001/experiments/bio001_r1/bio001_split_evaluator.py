@@ -10,23 +10,15 @@ counts, and assigns perturbations to 5 deterministic folds via BLAKE2b hashing
 NOT downloaded this round: DATA_TRACTABILITY_BLOCKED (stdlib-only constraint,
 see dataset_map.md).
 
-Part B (SYNTHETIC GROUND TRUTH, seeded): a cell table with known functional
-groups, donor and batch offsets, and per-gene response deltas. The SAME split
-validator + evaluator that will later consume real expression data is run
-under three regimes:
+Part B (SYNTHETIC, seeded): preserve the corrected E2 negative result.
+For one held-gene test cohort, excluding all functional siblings empties CLEAN
+training. E2 is INCONCLUSIVE; it does not establish leakage. The donor comparison
+is a POST_HOC diagnostic on held groups 6/7 and donors 0/1/2. LEAKY learns donor
+means from non-held groups; CLEAN sees only donor 3 and predicts its training
+mean. This diagnostic changes both exposure and estimator and is not a causal
+isolation of donor leakage. No real expression matrix is evaluated.
 
-  frozen  : whole functional groups held out (function-grouped holdout;
-            the group-mean estimator has no same-group training cells and must
-            fall back to the global mean)
-  leaky   : individual genes held out (their functional siblings remain in
-            training, so the group-mean estimator "knows" the held-out effect)
-  donorleak : groups frozen but donors overlap between train and test, with a
-            per-donor offset estimator memorizing donor offsets
-
-Verdict (pre-registered in round.json): demo succeeds if
-  leaky_pearson - frozen_pearson >= 0.2  and  donorleak_pearson - donorclean_pearson >= 0.1.
-A high leaky score with a low frozen score QUANTIFIES the leakage inflation that
-PerturbVAE and Systema report for published benchmarks. Stdlib only.
+Outputs omit the wall clock and use canonical LF bytes for exact replay.
 """
 from __future__ import annotations
 import csv
@@ -36,7 +28,6 @@ import json
 import math
 import random
 from collections import Counter, defaultdict
-from datetime import datetime, timezone
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -148,13 +139,13 @@ def make_synthetic(seed: int = 42, n_genes: int = 60, n_groups: int = 8,
 
 def run_split(cells, gene_group, mode: str, held_groups=(6, 7), hold_frac: float = 0.2,
               donor_holdout: bool = False):
-    """(docstring updated in remediation v2)"""
-    """Returns (pearson, mse, n_test) of the group-mean / global-mean baseline.
+    """Score a historical synthetic regime.
 
-    donor_holdout=True (with mode='frozen' or 'donorleak') reserves donors 3+
-    for test only: the estimator never sees their offsets, so any donor-mean
-    usage on test cells is genuine leakage rather than a mere feature benefit
-    (Codex-review corrected comparison).
+    With donor_holdout=True, test groups are 6/7, restricted to donors 0/1/2.
+    LEAKY training uses groups 0..5 with all donors and predicts donor means
+    (test groups are unseen). CLEAN keeps only donor 3 training rows and uses
+    a constant global mean. The resulting same-cohort difference is POST_HOC,
+    not a preregistered or causally isolated leakage result.
     """
     rng = random.Random(12345)  # split RNG independent of data RNG
     if mode in ("frozen", "donorleak", "donorclean"):
@@ -206,7 +197,7 @@ def run_split(cells, gene_group, mode: str, held_groups=(6, 7), hold_frac: float
 
 
 def main() -> int:
-    out = {"generated": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+    out = {}
     out["norman_audit"] = audit_norman()
     cells, gene_group, _ = make_synthetic()
     # Codex P1 (convergence-2): the preregistered E2 comparison must use ONE
@@ -270,10 +261,11 @@ def main() -> int:
         "held genes, so sibling removal EMPTIES the CLEAN training set: no "
         "valid sibling-free estimator exists. Per owner instruction the "
         "preregistered E2 is recorded as FAILED/INCONCLUSIVE; the revised "
-        "design (model ablation) is admitted as a separate round.")
-    dl_p, dl_mse, _, dl_rows = run_split(cells, gene_group, "donorleak",
+        "design (model ablation) is retained as exploratory/unverified; "
+        "its earlier admission and PASS labels are withdrawn.")
+    dl_p, dl_mse, dl_n, dl_rows = run_split(cells, gene_group, "donorleak",
                                          donor_holdout=True)
-    dc_p, dc_mse, _, dc_rows = run_split(cells, gene_group, "donorclean",
+    dc_p, dc_mse, dc_n, dc_rows = run_split(cells, gene_group, "donorclean",
                                          donor_holdout=True)
     same_T_donor = dl_rows == dc_rows
     out["synthetic_demo"] = {
@@ -290,11 +282,20 @@ def main() -> int:
         "donorleak_pearson": round(dl_p, 4),
         "donorclean_pearson": round(dc_p, 4),
         "same_test_rows_invariant_donor": same_T_donor,
+        "donor_design": {
+            "held_groups": [6, 7], "test_donors": [0, 1, 2],
+            "n_test": dl_n, "n_test_clean": dc_n,
+            "n_train_leaky": sum(c[1] not in (6, 7) for c in cells),
+            "n_train_clean": sum(c[1] not in (6, 7) and c[2] == 3 for c in cells),
+            "claim_status": "POST_HOC_EXPOSURE_AND_ESTIMATOR_COMPARISON"
+        },
         "group_leak_gap": (round(leaky_p - frozen_p, 4) if frozen_p is not None
                            else None),  # INCONCLUSIVE: no valid CLEAN estimator
         "donor_leak_gap_vs_donorclean": round(dl_p - dc_p, 4),
-        "donor_exposure_note": "donor diagnostic (POST_HOC): LEAKY train "
-                               "includes T-donor rows; CLEAN excludes them",
+        "donor_exposure_note": "POST_HOC: test groups 6/7 and donors 0/1/2; "
+                               "LEAKY predicts donor means from non-held groups/all donors; "
+                               "CLEAN predicts the constant mean from non-held groups/donor 3. "
+                               "Exposure and estimator both differ; no isolated leakage claim",
     }
     gap_group = (leaky_p - frozen_p) if frozen_p is not None else None
     gap_donor = dl_p - dc_p
@@ -324,8 +325,8 @@ def main() -> int:
     out["e2_status"] = ("CONSTRUCTED" if e2_constructible else
                         "FAILED_INCONCLUSIVE_NO_SIBLING_FREE_ESTIMATOR")
     RESULTS.mkdir(parents=True, exist_ok=True)
-    (RESULTS / "bio001_r1_results.json").write_text(
-        json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (RESULTS / "bio001_r1_results.json").write_bytes(
+        (json.dumps(out, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
     print(json.dumps({"norman": {k: out["norman_audit"][k] for k in
                                  ("cells_total", "class_counts", "single_perturbations",
                                   "cells_per_single_perturbation")},

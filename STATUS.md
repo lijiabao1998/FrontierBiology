@@ -1,7 +1,16 @@
-# 狀態｜2026-09-28
+# 狀態｜2026-09-29
 
-主線：BIO-001 r1 完成（Norman metadata 審計＋frozen/leaky evaluator＋洩漏負控制 PASS；表達矩陣 1.1GB tractability-BLOCKED，解除路徑已寫明）。研究輪次 1。
+BIO-001仍OPEN。已有r1研究紀錄與r2探索產物；10張題卡中只有BIO-001實作了
+metadata/evaluator工具。本次是已有證據修復，不新增研究輪次。
 
-問題卡10；研究輪次0；各題 evaluator 尚未實作；無本庫新機制、無新實驗或臨床結果。
+- r1：Norman metadata 111,445 cells／105 singles；E2 CLEAN train為0，
+  **INCONCLUSIVE**，沒有洩漏PASS。donor 0.1616僅為post-hoc exposure與估計器比較。
+- 舊verifier的0.905來自不同cohort及train/test重疊；歷史MISMATCH保存，
+  修正版按主實作原有estimand獨立重建。具體檢查及review狀態見修復報告。
+- r2：admission與PASS已撤回，**EXPLORATORY_UNVERIFIED**；缺有效事前門檻、
+  本輪四路新檢索與獨立驗證。保留描述數值，不冒充完成研究。
+- 表達矩陣1.1GB未處理；無真實資料泛化、機制、濕實驗或臨床結果。
 
-來源為本次有界篩查，含原始摘要、可讀論文段落及官方基準；不是完整排除全球所有解答。每輪再查最新版本、評論及修訂。CI已配置，結果看Actions，不預寫通過。沒有研究排程、API金鑰、資料自動取得或分支保護配置。
+權威紀錄：runs/20260927T190001038729Z-glm-BIO-001/ROUND_REPORT.md，以及
+runs/20260929-gpt-BIO-001-convergence/REPAIR_REPORT.md。records CI只驗格式與紀錄，
+不替科研結果背書。新研究須重新檢索、凍結、admit；本修復不補造過往搜尋。

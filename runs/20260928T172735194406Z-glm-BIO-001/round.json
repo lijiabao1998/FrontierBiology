@@ -5,86 +5,55 @@
   "branch": "glm/BIO-001-baseline-r1",
   "base_sha": "4fdac6104e9c69273fe328c99df51fb83222d733",
   "started_at": "2026-09-28T17:27:35.194406+00:00",
-  "state": "ADMITTED",
-  "acceptance": "Scope 凍結（動手前）——修訂設計（MODEL_ABLATION，非洩漏宣稱）：r1 之 preregistered E2 已記為 FAILED/INCONCLUSIVE（sibling 移除後 CLEAN 訓練集為空：每組含 held genes，無有效 sibling-free 估計器；負結果已保存於 runs/20260927T190001038729Z-glm-BIO-001 與 results/r1/bio001_r1_results.json）。本輪改測『model ablation』：同一 T（770 列 held-gene cells）、同一訓練列（non-held genes），比較 group-aware 估計器（使用真實 group 結構）與 structure-blind 估計器（global mean；group 結構不可用）。判準（事前凍結）：A1 ablation gap = leaky_pearson − blind_pearson；A2 兩 regime 使用完全相同之 test rows 與 training rows（不變量斷言）；A3 結論僅得宣稱『group 結構攜帶可預測訊號』（MODEL_ABLATION_PASS/FAIL），不得宣稱 split-leakage 或 data leakage。本輪亦修復 Codex 工程 findings：獨立驗證器改 canonical bytes 輸出、明確比較 committed top-level verdict、manifest 含 GEO .gz 輸入。",
-  "not_done": "不宣稱 split-leakage 或 data leakage（r1 E2 已 INCONCLUSIVE）；不訓練大型模型；不下載表達矩陣；不宣稱真實 Norman 資料結果。",
+  "state": "DRAFT",
+  "acceptance": "WITHDRAWN as a confirmatory acceptance contract. The historical text did not freeze a numerical success threshold; the evaluator nevertheless applied 0.2. No retrospective threshold is added. Existing ablation values are descriptive only; the original record is preserved in historical_record_at_9590a99.json.",
+  "not_done": "No valid current-round four-route retrieval, no independently verified r2 result, no preregistered pass threshold, no new literature claim, no expression matrix analysis. Do not continue this record as an admitted round.",
   "budget": {
     "wall_minutes": 60,
     "usd": 0,
     "max_trials": 100
   },
   "preflight": {
-    "checked_at": "2026-09-28T17:28:30+00:00",
-    "verdict": "NO_RESOLUTION_FOUND",
-    "sources_read": true,
-    "scope_compared": true,
-    "retractions_checked": true,
-    "licenses_checked": true,
-    "safety_checked": true,
+    "checked_at": null,
+    "verdict": "BLOCKED",
+    "sources_read": false,
+    "scope_compared": false,
+    "retractions_checked": false,
+    "licenses_checked": false,
+    "safety_checked": false,
     "baseline_identified": true,
-    "acceptance_frozen": true,
-    "queries": [
-      {
-        "query": "single-cell perturbation response prediction benchmark generalization (re-check within session; r1 full four-way at runs/20260927T190001038729Z-glm-BIO-001/LITERATURE_MAP.md)",
-        "engine": "session-reuse (recorded)",
-        "category": "general",
-        "outcome": "問題仍 open；本輪為設計修訂輪，非新文獻主張"
-      },
-      {
-        "query": "Norman 2019 GSE133344 data availability (curl probe recorded r1)",
-        "engine": "curl(ftp.ncbi)",
-        "category": "discipline",
-        "outcome": "metadata 1.9MB 已下載審計；matrix 1.1GB 未下載"
-      },
-      {
-        "query": "model ablation versus leakage demonstration methodology",
-        "engine": "zcode-websearch(session)",
-        "category": "solution",
-        "outcome": "ablation 框架確認為標準做法；本輪據此重新凍結"
-      },
-      {
-        "query": "criticism: preregistration violations post-hoc threshold changes (EVIDENCE_POLICY/RESEARCH_PROTOCOL compliance)",
-        "engine": "governance-docs",
-        "category": "criticism",
-        "outcome": "本輪依 owner 指示開新 admitted round，post-hoc 不回寫歷史"
-      }
-    ],
-    "sources": [
-      {
-        "url": "https://www.nature.com/articles/s41592-025-02980-0",
-        "title": "Benchmarking algorithms for generalizable single-cell perturbation response prediction (Wei et al. 2025)",
-        "kind": "primary",
-        "supports": "題卡 primary；cookie 牆僅摘要層級（r1 已記）"
-      },
-      {
-        "url": "https://github.com/brhanufen/perturbvae",
-        "title": "PerturbVAE leakage-aware benchmark (MIT)",
-        "kind": "primary",
-        "supports": "leakage vs ablation 方法論區分"
-      }
-    ],
-    "limitations": "session-reuse 檢索（r1 完整四路已存檔）；Nature primary cookie 牆；無表達矩陣。",
-    "scope_comparison": "本輪 scope＝修訂後之 ablation 診斷（r1 E2 INCONCLUSIVE 之替代），非原 E2 洩漏宣稱；無同範圍外部解答問題（設計輪）。",
-    "baseline": "group-aware vs structure-blind 估計器於同一 T（770 列）之 ablation 對照。"
+    "acceptance_frozen": false,
+    "queries": [],
+    "sources": [],
+    "limitations": "The historical general and discipline routes reused r1; criticism cited governance documents. No valid four-route r2 search is evidenced. Historical entries are preserved, not silently relabelled as new retrieval.",
+    "scope_comparison": "No current literature status established for r2. The repair only withdraws unsupported claims.",
+    "baseline": "Descriptive replay of the existing synthetic group-aware versus constant-mean comparison.",
+    "historical_record": "historical_record_at_9590a99.json"
   },
   "artifacts": [
     "problems/BIO-001/experiments/bio001_r2_ablation/eval_model_ablation.py",
     "problems/BIO-001/results/r2/bio001_r2_ablation_results.json"
   ],
   "result": {
-    "state": "ROUND_FINISHED",
-    "summary": "MODEL_ABLATION_PASS：group-aware 0.8776 vs structure-blind 0.0（gap 0.8776），同一 T/同一訓練列；僅宣稱 group 結構攜帶可預測訊號，非洩漏宣稱",
+    "state": "EXPLORATORY_UNVERIFIED",
+    "verdict": "EXPLORATORY_UNVERIFIED",
+    "summary": "Descriptive synthetic values only: group-aware Pearson 0.8776, structure-blind 0.0, gap 0.8776. No scientific PASS label, independent validation, leakage or biological claim.",
+    "independently_verified": false,
+    "success_threshold": null,
     "commands": [
       {
         "cwd": "problems/BIO-001",
-        "command": "python experiments/bio001_r2_ablation/eval_model_ablation.py"
-      },
-      {
-        "cwd": "problems/BIO-001",
-        "command": "python experiments/bio001_r1/independent_leakage_verifier.py"
+        "command": "python -B experiments/bio001_r2_ablation/eval_model_ablation.py",
+        "role": "author replay only; not independent verification"
       }
     ],
-    "admitted_at": "2026-09-28T17:28:30+00:00"
+    "verification_status": "NOT_RUN_FOR_R2; the earlier r1 verifier command did not validate r2",
+    "historical_record": "historical_record_at_9590a99.json"
   },
-  "admitted_at": "2026-09-28T17:28:16.564211+00:00"
+  "record_status": "EXPLORATORY_UNVERIFIED_ADMISSION_WITHDRAWN",
+  "state_note": "DRAFT denotes not admitted under the pinned record schema; exploratory outputs already exist. It does not mean the historical execution did not occur.",
+  "withdrawn_admission": {
+    "original_admitted_at": "2026-09-28T17:28:16.564211+00:00",
+    "reason": "Current-round search, frozen success threshold and independent verification requirements were not satisfied. No retrospective readmission."
+  }
 }

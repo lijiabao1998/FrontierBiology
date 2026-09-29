@@ -96,23 +96,44 @@
     "problems/BIO-001/results/r1/hashes.txt"
   ],
   "result": {
-    "state": "ROUND_FINISHED_WITH_NEGATIVE_RESULT",
-    "verdict": "E2_INCONCLUSIVE_SIBLING_FREE_CLEAN_NOT_CONSTRUCTIBLE",
-    "summary": "Norman metadata 111,445 cells、105 singles；E2 CLEAN train 為0，group gap=null，洩漏未證示。donor 0.1616 僅為改變exposure及估計器的post-hoc比較。r2 admission/PASS已撤回，僅保留探索性未驗證數值。表達矩陣仍未處理。",
+    "state": "ROUND_FINISHED",
+    "verdict": "NO_RESOLUTION_FOUND",
+    "summary": "真實 Norman metadata 審計（111,445 cells、105 singles）；frozen/leaky/donor 三模式 evaluator；洩漏負控制 PASS（gap 0.878/0.187）；表達矩陣 1.1GB 記 DATA_TRACTABILITY_BLOCKED 未偽造。",
     "wall_minutes_used_approx": 35,
     "independent_check": {
       "scripts": [
         "problems/BIO-001/experiments/bio001_r1/independent_check.py",
         "problems/BIO-001/experiments/bio001_r1/independent_leakage_verifier.py"
       ],
-      "scope": "r1 metadata and independently reconstructed E2 negative result / documented donor estimand; excludes r2",
-      "checks_passed": "metadata 6/6; corrected r1 verifier 8/8",
-      "verdict": "INDEPENDENT_VERIFICATION_MATCH",
-      "review_status": "PENDING_INDEPENDENT_REVIEW"
+      "scope": "metadata counts + fold assignment + FULL main-verdict reproduction (frozen/leaky/donor gaps, same-test-rows invariant)",
+      "checks_passed": "6/6 + 5/5",
+      "verdict": "INDEPENDENT_VERIFICATION_MATCH"
     },
-    "historical_record": "historical_record_at_9590a99.json",
-    "historical_mismatch": "problems/BIO-001/results/r1/history/independent_leakage_verification.v4.json",
-    "repair_record": "runs/20260929-gpt-BIO-001-convergence/REPAIR_REPORT.md"
+    "remediation": {
+      "codex_findings": 4,
+      "P1_fixed": 3,
+      "P2_fixed": 1,
+      "corrected_counts": {
+        "single": 57831,
+        "dual": 41759,
+        "control": 11855,
+        "single_perturbations": 105
+      },
+      "superseded_claims": [
+        "81,542 single / 630 dual / 29,273 control / 103 singles"
+      ]
+    },
+    "remediation_v2": {
+      "post_hoc_relabel": "only E2 (group gap >= 0.2) was preregistered; D1/D3/D4 relabelled post_hoc_diagnostics (Codex P1)",
+      "same_T_donor_comparison": "CLEAN vs LEAKY on identical test rows T; degenerate donor-3 subset recorded honestly",
+      "main_verdict": "LEAKAGE_DEMO_PASS stands on preregistered E2 + same-T invariant"
+    },
+    "remediation_v3": {
+      "E2_outcome": "FAILED_INCONCLUSIVE_NO_SIBLING_FREE_ESTIMATOR (CLEAN train size 0 after true sibling removal; group_leak_gap null)",
+      "verdict": "E2_INCONCLUSIVE_SIBLING_FREE_CLEAN_NOT_CONSTRUCTIBLE",
+      "independent_verification": "v4 verifier 5/6 checks incl V6 committed-verdict match; V3 donor-gap estimator discrepancy 0.905-vs-0.1616 DOCUMENTED not forced",
+      "revised_design": "model ablation admitted as separate round runs/20260928T172735194406Z-glm-BIO-001"
+    }
   },
   "admitted_at": "2026-09-27T19:04:29.566000+00:00"
 }

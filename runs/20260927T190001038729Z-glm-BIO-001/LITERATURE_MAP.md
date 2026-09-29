@@ -13,7 +13,7 @@
 | 6 | criticism | `"perturbation response" single-cell prediction benchmark criticism flawed leakage 2025` | **Systema**（Nat Biotechnol 44:1050–1059, 2025/26）：benchmarks 被 systematic variation 灌水 |
 
 ## 圖譜
-- **rigorously/computationally known**：Norman 2019 資料結構（本輪實測：111,445 cells、105 singles [corrected]、41,759 duals [corrected]、126–3,824 cells/perturbation）。
+- **rigorously/computationally known**：Norman 2019 資料結構（本輪實測：111,445 cells、105 singles [corrected]、41,759 duals [corrected]、113–1,960 cells/perturbation（median 495））。
 - **conjectured/open**：跨細胞情境與未見擾動泛化——open（Wei 2025、PerturbVAE A→B gap、Systema、baseline-gap preprint 一致指向）。
 - **disputed**：多數已發表模型的「泛化」宣稱受 leakage/systematic-variation 質疑（Systema；Camillo 對 virtual-cell 的 mean-baseline 批評）。
 - **superseded**：無（題卡 known_result 仍準確）。

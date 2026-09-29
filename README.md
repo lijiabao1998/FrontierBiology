@@ -40,4 +40,4 @@ python3 ../FrontierLab-Governance/tools/frontier.py admit . runs/<round-id>/roun
 資料有自己的使用條件。論文可讀不代表個體資料可下載；無授權則記 BLOCKED。donor、研究批次、同源群與時間依任務切分，避免同一受試者／近親序列同時進訓練及測試。一次高分不是新機制。
 
 ## 本次交付
-題卡與研究流程已建立；原創研究輪次0，各題分析／evaluator尚未實作，資料未批量下載。共用CI驗記錄，不會替 agent 搜尋或替生物實驗背書。沒有常駐 agent、付費服務或研究自動排程。
+題卡與研究流程已建立。BIO-001 r1 已完成 metadata 審計並保存 E2 INCONCLUSIVE 負結果；r2 的 admission／PASS 已撤回，只保留探索性未驗證產物。其餘9題尚無 evaluator。表達矩陣未處理，BIO-001仍OPEN；詳見 STATUS 與各輪報告。共用CI只驗紀錄，不替研究結果背書。

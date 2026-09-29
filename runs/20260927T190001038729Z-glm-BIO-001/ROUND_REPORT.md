@@ -1,49 +1,57 @@
-# ROUND REPORT｜BIO-001｜20260927T190001038729Z-glm-BIO-001
+# BIO-001 r1：metadata 審計與未完成的洩漏驗證
 
-- branch：`glm/BIO-001-baseline-r1`（base `e0c162b2705760eee8cc22c1400da2370984fac4`）；pin `07d2b130`
-- verdict：**NO_RESOLUTION_FOUND**（leakage/泛化為公認未解：Systema、PerturbVAE、baseline-gap preprint 一致）
-- **REMEDIATION 2026-09-28（Codex review）**：下方初版數字 81,542/630/29,273/103 已被修正取代——正確值 57,831 single / 41,759 dual / 11,855 control、105 singles；初版宣稱僅適用於錯誤 parser，不應再引用。
-- 本輪判定：**LEAKAGE_DEMO_PASS（僅 1 項 preregistered check E2 通過；D1/D3/D4 為 POST_HOC diagnostics）** [convergence-2 更正：原 4/4 表述錯誤]
+目前科學判定：**E2_INCONCLUSIVE_SIBLING_FREE_CLEAN_NOT_CONSTRUCTIBLE**。
+BIO-001 保持 OPEN。原始 acceptance 與檢索紀錄保留；本次只修正已有證據，
+沒有新增研究輪次或補造歷史檢索。
 
-## 交付（全部 stdlib、確定性）
-1. **真實資料審計**（dataset_map.md＋results/r1/bio001_r1_results.json）：Norman 2019 GSE133344 metadata 實測——111,445 cells（81,542 single／29,273 control／630 dual）、105 個單擾動 [corrected]、每擾動 126–3,824 cells（median 463）；BLAKE2b 5-fold 分配已生成。
-2. **split validator＋evaluator**（`bio001_split_evaluator.py`）：frozen（function-grouped）/ leaky（同組鄰居留在 train）/ donorleak 三模式，group-mean 基線、Pearson/MSE。
-3. **洩漏負控制（合成 ground truth，seed 42/12345）**：frozen Pearson **0.000**（留出組無任何同組訓練訊號——正確的零）vs leaky Pearson **0.878**（gap **0.878** ≥ 0.2 ✓）；MSE 0.794→0.115；donor 洩漏 gap **0.187** ≥ 0.1 ✓。這以可控實驗量化了 Systema/PerturbVAE 在真實 benchmark 報告的膨脹機制。
-4. **DATA_TRACTABILITY_BLOCKED（誠實記錄）**：表達矩陣 1.1GB mtx.gz 未下載（stdlib 時間盒）；解除路徑寫明（numpy/scipy in-repo 或串流取樣）。**未偽造任何真實資料結果**。
-5. 失敗日誌：合成生成器初版偏斜權重使留出組 0 細胞（ZeroDivision）→ 改均勻指派後通過；Nature abstract 遭 cookie 牆（記 limitation）。
+## 已有資料
 
-## 沒做成／限制
-- 真實表達矩陣未處理 → 未對真實 Norman 宣稱任何泛化評估。
-- function-grouped split 之 pathway 資源（GO/Reactome 授權版本）未整合——下輪資源清單。
-- PerturbVAE 數值未獨立重算（僅方法論引用）。
+Norman GSE133344 metadata 共 111,445 cells：57,831 single、41,759 dual、
+11,855 control；105 個單擾動，每擾動 113–1,960 cells（median 495）。
+表達矩陣 1.1GB 未下載或處理，沒有真實資料泛化評估。
 
-## 下一輪最小下一步
-1. in-repo 安裝 numpy/scipy → 串流解析 mtx → 真實 Norman 上跑同一 evaluator（frozen vs random）。
-2. 取得 pathway 分組資源（授權審計）→ 真 function-grouped split。
-3. 讀 Wei 2025 全文（proxy/校園管道）對齊其 split 定義。
+## E2 負結果
 
-## Remediation（2026-09-28，Codex review 回應）
-- **P1 parser**：guide_identity 命名實為「token 過濾」語意（gene 名可含底線、guide 為 NegCtrl*/數字）；初版 rsplit 解析把 SET_KLF1__SET_KLF1 誤判單擾動、NegCtrl0_BAK1__... 誤判 control。修正後 class counts 大幅翻正（dual 630→41,759），並與 Norman 2019 雙擾動設計之文獻認知一致。回歸測試＝independent_check.py 內 4 條 spot assertions。
-- **P1 donor 對照**：新增 donor_holdout（donor 3 僅出現在 test）之 donor-clean split；donor_leak_gap 改為 vs donor-clean（0.1869 ≥ 0.1 ✓）——原比較只反映特徵開關。
-- **P1 獨立覆核**：`independent_check.py`（regex+memoisation 結構相異實作）6/6 checks 吻合（cells_total、class_counts、105 singles、median、fold 決定性、spot identities）；round.json 補 independent_check 紀錄。
-- **P2 hashes**：重算並通過 `sha256sum -c`。
-- 收窄宣稱：初版「105 個單擾動 [corrected]／630 dual cells」等數字撤回；dataset_map.md 已註記修正。
+同一 held-gene test cohort 為770列。LEAKY Pearson=0.8776；真正移除functional
+siblings後，CLEAN train=0，沒有可用的sibling-free估計器。因此CLEAN Pearson
+與group gap都是null，原先洩漏PASS撤回。r2改成模型消融也不能補救這個負結果。
 
-## Remediation v2（Convergence Wave，Codex 二審回應）
-- P1 same-T donor 對照：CLEAN（donor-blind）vs LEAKY（donor-label 通道開）共用完全相同之 test rows T 與訓練列；same_test_rows_invariant=true；gap 0.1869 於相同列上定義；donor-3-only 子集兩 predictor 皆常數（Pearson 0）之事實如實記錄。
-- P1 正名：僅 E2（group gap ≥0.2）為 preregistered；D1/D3/D4 改標 post_hoc_diagnostics，不回寫歷史。
-- P1 獨立洩漏驗證：independent_leakage_verifier.py（不 import 主 evaluator，自行構造 split/預測/Pearson）5/5 吻合主 verdict——V1 group gap、V2 donor gap、V3 same-rows、V4/V5 frozen/leaky 重現。
-- P2 manifest：verify_manifest.py + 全輸入（.gz）與輸出 hash，最後生成，全綠。
-- P2 round.json summary 103→105 singles 已更正。
+## donor post-hoc 診斷與覆核修正
 
-## Remediation v3（Convergence-2，Codex 三審回應）
-- **P1 E2 同 cohort**：單一 held-gene 測試集 T（770 列、全組）——LEAKY 訓練含 sibling、CLEAN 為 sibling-free 全域均值參考（group-mean 估計器之唯一 sibling-free 估計，退化如實記錄）；gap 0.8776 於相同 cohort。
-- **P1 正名**：headline 改為「1 preregistered E2」；D1/D3/D4 明列 POST_HOC。
-- **P2**：獨立驗證器 v3 同步 E2 設計（V0 same-rows 新增）；驗證 JSON 以 canonical LF 寫出；manifest 含兩個 GEO .gz 輸入；LITERATURE_MAP/dataset_map 撤回數字全部替換。
+主實作的test固定為groups 6/7、donors 0/1/2，共1,105列。LEAKY train為其他
+群組所有donors的4,504列；CLEAN train再限donor 3，共1,100列。兩者測試列
+相同且無train/test重疊。因test groups未出現在train，LEAKY的估計公式
+`donor_mean[d] + group_mean.get(group, global_mean) - global_mean`簡化成
+`donor_mean[d]`；CLEAN為其train global mean。Pearson為0.1616與0.0。
+這同時改變exposure與估計器，只是post-hoc描述，不能當作隔離出的洩漏效應。
 
-## Remediation v4（Convergence-3，Codex P1 誠實處理）
-- **P1 E2 負結果**：CLEAN 真正過濾 sibling rows 後訓練集為空（每組含 held genes）——無有效 sibling-free 估計器。**preregistered E2 記為 FAILED/INCONCLUSIVE**（verdict: E2_INCONCLUSIVE_SIBLING_FREE_CLEAN_NOT_CONSTRUCTIBLE；group_leak_gap=null）。未調切分、未救 PASS。
-- **修訂設計另開 admitted round**：runs/20260928T172735194406Z-glm-BIO-001（MODEL_ABLATION；group-aware 0.8776 vs structure-blind 0.0；僅宣稱 group 結構訊號，非洩漏）。
-- **P1 verdict 比較**：獨立驗證器 v4 重算 expected verdict 並與 committed 比對（V6 ✓ 一致：E2_INCONCLUSIVE）。
-- **P2 canonical bytes**：驗證 JSON 以 write_bytes LF 輸出。
-- **誠實差異記錄**：donor POST_HOC gap 之獨立實作得 0.905 vs 主實作 0.1616——estimator 敏感，已記 documented discrepancy，不強迫一致；該 POST_HOC 數字不得單獨引用。
+舊v4 verifier用了另一個切分：non-held genes為train（5,230列），所有groups的
+前三個donors為test（4,509列），其中3,929列同時在train/test。0.905因此不是同一
+estimand，也不是已核實的獨立重現。舊MISMATCH JSON保存在
+`results/r1/history/independent_leakage_verification.v4.json`。修正版不import主程式，
+按上述row選擇與簡化公式獨立重建，並由空CLEAN train直接推導E2 verdict，
+不從待驗證JSON的PASS/status字段推導答案。驗證結果與有界回歸紀錄見修復報告。
+
+## r2 狀態及限制
+
+r2過往未凍結0.2門檻、未證明本輪四路新檢索、沒有r2獨立verifier。已撤回
+admission、完成與PASS標籤，僅保留探索性未驗證的0.8776對0.0數值。原始紀錄
+另存historical_record_at_9590a99.json，沒有補做檢索冒充當時已完成。
+
+## 重播與歷史
+
+從repo根目錄執行：
+
+```text
+python -B problems/BIO-001/experiments/bio001_r1/bio001_split_evaluator.py
+python -B problems/BIO-001/experiments/bio001_r1/independent_check.py
+python -B problems/BIO-001/experiments/bio001_r1/independent_leakage_verifier.py
+python -B problems/BIO-001/experiments/bio001_r2_ablation/eval_model_ablation.py
+python -B problems/BIO-001/experiments/bio001_r1/tests_convergence.py
+python -B problems/BIO-001/experiments/bio001_r1/verify_manifest.py --git-ref HEAD
+```
+
+目前結果、原始輸入與校驗器均受manifest涵蓋；產物不含即時時間戳，統一LF。
+退出0可表示成功保存負結果，不表示科學假說通過。舊report另存
+HISTORICAL_REPORT_at_9590a99.md；只有那份歷史檔內保留撤回的PASS與舊數字。
+尚待獨立review及owner合併判斷；新研究必須另開有效預登記輪次。

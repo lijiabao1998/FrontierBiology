@@ -1,26 +1,32 @@
 {
   "independent_counts": {
+    "n_cells": 6000,
+    "n_test_E2": 770,
     "clean_train_size": 0,
+    "e2_no_row_overlap": true,
     "leaky_pearson": 0.8776,
-    "donor_leak": 0.905,
+    "leaky_mse": 0.115,
+    "donor_leak": 0.1616,
     "donor_clean": 0.0,
-    "donor_gap": 0.905,
-    "same_rows": true,
+    "donor_gap": 0.1616,
+    "donor_test_size": 1105,
+    "donor_train_leaky_size": 4504,
+    "donor_train_clean_size": 1100,
+    "donor_no_row_overlap": true,
     "expected_verdict": "E2_INCONCLUSIVE_SIBLING_FREE_CLEAN_NOT_CONSTRUCTIBLE",
-    "committed_verdict": "E2_INCONCLUSIVE_SIBLING_FREE_CLEAN_NOT_CONSTRUCTIBLE"
+    "expected_status": "FAILED_INCONCLUSIVE_NO_SIBLING_FREE_ESTIMATOR"
   },
   "checks": {
     "V1_clean_train_empty": true,
-    "V2_inconclusive_reproduced": true,
-    "V3_donor_gap_reproduced": false,
-    "V3_documented_discrepancy": {
-      "independent_gap": 0.905,
-      "production_gap": 0.1616,
-      "interpretation": "donor diagnostic is estimator-sensitive; the POST_HOC donor gap must not be quoted without stating the estimator variant"
-    },
-    "V4_same_test_rows_donor_regimes": true,
-    "V5_leaky_pearson_reproduced": true,
-    "V6_committed_top_level_verdict_matches": true
+    "V2_empty_estimator_recorded": true,
+    "V3_e2_status_matches": true,
+    "V4_e2_counts_and_rows": true,
+    "V5_e2_leaky_metrics": true,
+    "V6_donor_metrics": true,
+    "V7_donor_cohort": true,
+    "V8_committed_verdict_matches_independent_result": true
   },
-  "verdict": "INDEPENDENT_VERIFICATION_MISMATCH"
+  "verdict": "INDEPENDENT_VERIFICATION_MATCH",
+  "scope": "r1 E2 negative result and fixed post-hoc donor estimand only; not r2",
+  "historical_mismatch": "history/independent_leakage_verification.v4.json"
 }

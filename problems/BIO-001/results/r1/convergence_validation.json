@@ -1,0 +1,52 @@
+{
+  "scope": "Existing-evidence repair only; no new research admission or independent r2 verification",
+  "base_sha": "9590a99939b7e54f48f6aa3f8e31c540e6fe1c4f",
+  "python": "3.13.5",
+  "replay_commands": [
+    {
+      "command": "python -B problems/BIO-001/experiments/bio001_r1/bio001_split_evaluator.py",
+      "exit_code": 0,
+      "scientific_verdict": "E2_INCONCLUSIVE_SIBLING_FREE_CLEAN_NOT_CONSTRUCTIBLE"
+    },
+    {
+      "command": "python -B problems/BIO-001/experiments/bio001_r1/independent_check.py",
+      "exit_code": 0,
+      "checks_passed": 6,
+      "checks_total": 6
+    },
+    {
+      "command": "python -B problems/BIO-001/experiments/bio001_r1/independent_leakage_verifier.py",
+      "exit_code": 0,
+      "checks_passed": 8,
+      "checks_total": 8
+    },
+    {
+      "command": "python -B problems/BIO-001/experiments/bio001_r2_ablation/eval_model_ablation.py",
+      "exit_code": 0,
+      "scientific_verdict": "EXPLORATORY_UNVERIFIED"
+    },
+    {
+      "command": "python -B problems/BIO-001/experiments/bio001_r1/tests_convergence.py",
+      "exit_code": 0,
+      "tests_passed": 6,
+      "mutation_subcases": 7,
+      "deterministic_byte_replays": 3,
+      "negative_verifier_cli_expected_exit": 1
+    }
+  ],
+  "repair_failures_preserved": [
+    {
+      "stage": "first regression run",
+      "observed": "6 tests, one error: dotted mutation path split the numeric field suffix 0.2",
+      "correction": "Use slash-delimited nested paths; the scientific result and threshold were unchanged",
+      "rerun": "6/6 tests passed"
+    }
+  ],
+  "author_review_status": "PENDING_PARENT_INDEPENDENT_REVIEW",
+  "limits": [
+    "r2 has no independent verifier",
+    "No fresh literature claim or retrospective admission",
+    "Real expression matrix was not processed",
+    "Donor comparison changes both exposure and estimator; post-hoc only"
+  ]
+}
