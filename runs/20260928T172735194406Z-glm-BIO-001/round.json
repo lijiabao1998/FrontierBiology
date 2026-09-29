@@ -25,28 +25,40 @@
     "acceptance_frozen": true,
     "queries": [
       {
-        "query": "single-cell perturbation response prediction benchmark generalization (re-check within session; r1 full four-way at runs/20260927T190001038729Z-glm-BIO-001/LITERATURE_MAP.md)",
-        "engine": "session-reuse (recorded)",
         "category": "general",
-        "outcome": "問題仍 open；本輪為設計修訂輪，非新文獻主張"
+        "query": "single-cell perturbation response prediction generalization benchmark 2026 Wei Nature Methods follow-up",
+        "engine": "zcode-websearch(web_search_prime)",
+        "started_at": null,
+        "completed_at": null,
+        "timestamp_status": "UNKNOWN",
+        "outcome": "Wei et al. Nat Methods = scPerturBench (27 methods/29 datasets); Li 2026 SciAdv benchmark; OP3/TDC benchmarks"
       },
       {
-        "query": "Norman 2019 GSE133344 data availability (curl probe recorded r1)",
-        "engine": "curl(ftp.ncbi)",
         "category": "discipline",
-        "outcome": "metadata 1.9MB 已下載審計；matrix 1.1GB 未下載"
+        "query": "Norman 2019 Perturb-seq K562 dataset dual perturbation combinatorial generalization evaluation",
+        "engine": "zcode-websearch(web_search_prime)",
+        "started_at": null,
+        "completed_at": null,
+        "timestamp_status": "UNKNOWN",
+        "outcome": "Norman 2019 Science aax4438 (~287 perturbations: 100 single + 131 dual); Figshare labeled version; sc-pert tasks"
       },
       {
-        "query": "model ablation versus leakage demonstration methodology",
-        "engine": "zcode-websearch(session)",
         "category": "solution",
-        "outcome": "ablation 框架確認為標準做法；本輪據此重新凍結"
+        "query": "model ablation group structure leakage versus information ablation methodology estimator sensitivity",
+        "engine": "zcode-websearch(web_search_prime)",
+        "started_at": null,
+        "completed_at": null,
+        "timestamp_status": "UNKNOWN",
+        "outcome": "RSC Digital Discovery: leakage-clean holdout + ablation/sensitivity distinguishing leakage from information"
       },
       {
-        "query": "criticism: preregistration violations post-hoc threshold changes (EVIDENCE_POLICY/RESEARCH_PROTOCOL compliance)",
-        "engine": "governance-docs",
         "category": "criticism",
-        "outcome": "本輪依 owner 指示開新 admitted round，post-hoc 不回寫歷史"
+        "query": "perturbation prediction benchmark criticism leakage data splitting flaws single-cell 2026",
+        "engine": "zcode-websearch(web_search_prime)",
+        "started_at": null,
+        "completed_at": null,
+        "timestamp_status": "UNKNOWN",
+        "outcome": "Heidari 2026 bioRxiv 'Far from Straightforward'; Schäfer 2026 'Principled Evaluation'; 'Evaluation Choice Flips Model Rankings' arXiv 2606.12639"
       }
     ],
     "sources": [
@@ -65,7 +77,8 @@
     ],
     "limitations": "session-reuse 檢索（r1 完整四路已存檔）；Nature primary cookie 牆；無表達矩陣。",
     "scope_comparison": "本輪 scope＝修訂後之 ablation 診斷（r1 E2 INCONCLUSIVE 之替代），非原 E2 洩漏宣稱；無同範圍外部解答問題（設計輪）。",
-    "baseline": "group-aware vs structure-blind 估計器於同一 T（770 列）之 ablation 對照。"
+    "baseline": "group-aware vs structure-blind 估計器於同一 T（770 列）之 ablation 對照。",
+    "search_completion_note": "PROTOCOL DEVIATION CORRECTED: the four searches above were performed POST-ADMISSION (2026-09-28) in response to Codex review — the round was originally admitted with session-reuse queries, which violated the fresh-search rule. Recorded here with real query strings; exact per-query timestamps not recoverable (timestamp_status UNKNOWN). The original admission state is preserved in git history and is not rewritten."
   },
   "artifacts": [
     "problems/BIO-001/experiments/bio001_r2_ablation/eval_model_ablation.py",
@@ -84,7 +97,12 @@
         "command": "python experiments/bio001_r1/independent_leakage_verifier.py"
       }
     ],
-    "admitted_at": "2026-09-28T17:28:30+00:00"
+    "admitted_at": "2026-09-28T17:28:30+00:00",
+    "independent_verification": {
+      "script": "problems/BIO-001/experiments/bio001_r2_ablation/independent_ablation_verifier.py",
+      "scope": "independent re-derivation of T/estimators/gap + threshold-scope audit + determinism check",
+      "verdict": "INDEPENDENT_VERIFICATION_MATCH (post-fix)"
+    }
   },
   "admitted_at": "2026-09-28T17:28:16.564211+00:00"
 }

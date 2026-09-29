@@ -101,13 +101,11 @@
     "summary": "真實 Norman metadata 審計（111,445 cells、105 singles）；frozen/leaky/donor 三模式 evaluator；洩漏負控制 PASS（gap 0.878/0.187）；表達矩陣 1.1GB 記 DATA_TRACTABILITY_BLOCKED 未偽造。",
     "wall_minutes_used_approx": 35,
     "independent_check": {
-      "scripts": [
-        "problems/BIO-001/experiments/bio001_r1/independent_check.py",
-        "problems/BIO-001/experiments/bio001_r1/independent_leakage_verifier.py"
-      ],
-      "scope": "metadata counts + fold assignment + FULL main-verdict reproduction (frozen/leaky/donor gaps, same-test-rows invariant)",
-      "checks_passed": "6/6 + 5/5",
-      "verdict": "INDEPENDENT_VERIFICATION_MATCH"
+      "script": "problems/BIO-001/experiments/bio001_r1/independent_leakage_verifier.py (v4)",
+      "checks_passed": "5/6",
+      "verdict": "INDEPENDENT_VERIFICATION_MISMATCH",
+      "mismatch": "V3 donor-gap estimator discrepancy: independent 0.905 vs production 0.1616 — documented, not forced; donor POST_HOC number must not be quoted standalone",
+      "note": "supersedes the earlier 6/6+5/5 MATCH claim which predated the V3 discrepancy discovery"
     },
     "remediation": {
       "codex_findings": 4,

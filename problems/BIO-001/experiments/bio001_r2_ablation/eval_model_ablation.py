@@ -94,8 +94,9 @@ def main() -> int:
     checks = {"A2_identical_test_rows": a2,
               "A1_gap_recorded": isinstance(gap, float),
               "A3_scope_label": True}
-    verdict = "MODEL_ABLATION_PASS" if (gap >= 0.2 and all(checks.values())) \
-        else "MODEL_ABLATION_FAIL"
+    # Codex P1: admitted acceptance defined A1 as RECORD-ONLY — no frozen cutoff, so no PASS/FAIL label post hoc
+    verdict = ("MODEL_ABLATION_GAP_RECORDED:" + format(gap, ".4f")
+               if all(checks.values()) else "MODEL_ABLATION_INVALID")
     out = {"round_id": "20260928T172735194406Z-glm-BIO-001",
            "design": "MODEL_ABLATION (not a leakage demonstration)",
            "n_test": len(test), "n_train": len(train),
@@ -106,8 +107,9 @@ def main() -> int:
            "structure_blind_mse": round(sb_mse, 4),
            "checks": checks, "verdict": verdict,
            "claim_scope": "group structure carries predictable signal for "
-                          "held-gene cells; NO split/data-leakage claim",
-           "generated": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+                          "held-gene cells; NO split/data-leakage claim; "
+                          "gap is REPORTED DESCRIPTIVELY (no frozen pass "
+                          "cutoff existed in the admitted acceptance)"}  # no volatile clock field: deterministic replay (Codex P2)
     RESULTS.mkdir(parents=True, exist_ok=True)
     (RESULTS / "bio001_r2_ablation_results.json").write_bytes(
         (json.dumps(out, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))

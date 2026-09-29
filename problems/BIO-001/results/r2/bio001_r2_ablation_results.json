@@ -13,7 +13,6 @@
     "A1_gap_recorded": true,
     "A3_scope_label": true
   },
-  "verdict": "MODEL_ABLATION_PASS",
-  "claim_scope": "group structure carries predictable signal for held-gene cells; NO split/data-leakage claim",
-  "generated": "2026-09-28T17:29:17+00:00"
+  "verdict": "MODEL_ABLATION_GAP_RECORDED:0.8776",
+  "claim_scope": "group structure carries predictable signal for held-gene cells; NO split/data-leakage claim; gap is REPORTED DESCRIPTIVELY (no frozen pass cutoff existed in the admitted acceptance)"
 }
