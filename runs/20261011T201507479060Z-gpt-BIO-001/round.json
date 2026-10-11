@@ -5,7 +5,7 @@
   "branch": "gpt/BIO-001-metadata-independent-20261011",
   "base_sha": "f88f06450e40379deba5de3ef67213536c0d9641",
   "started_at": "2026-10-11T20:15:07.479060+00:00",
-  "state": "ADMITTED",
+  "state": "FINISHED",
   "acceptance": "Frozen PROTOCOL.json SHA256 91d9ecb5b4b05d5974b8cc6fce3952da194048e4aedc733c08898adb270c0020. Exact17 fields and all-row/schema/domain anchors;17 named single-field+1 mutants rejected by semantic comparison. Unmodified legacy code bytes, preserved relative gzip layout, explicit new --result/--output paths: clean exit0/INDEPENDENT_CHECK_MATCH/six strictTrue checks; all17 mutants expected same legacy acceptance, confirming coverage gap. Legacy exit1/INDEPENDENT_CHECK_MISMATCH is valid rejection but fails this frozen expected coverage-gap contract; timeout/badJSON/otherexit is infrastructure fail-closed, never a rejection. Total verdict fails on any missing,nonfinite/domain/control/infra failure.",
   "not_done": "Metadata/count arithmetic and evaluator coverage only; no expression matrix download, synthetic rerun, model fit, mechanistic, generalization, independent biological replication, human identity or clinical claims. Historical r1 E2 INCONCLUSIVE and r2 EXPLORATORY_UNVERIFIED unchanged. GEO and original Science/PMC direct reads blocked by reCAPTCHA/InternalError; inherited repository attribution/archived lawful public K562 metadata reused, with no assertion of a newly obtained GEO license. Benchmark abstract and separate Pertpy primary article read; external subset counts are not this byte-pinned file.",
   "budget": {
@@ -85,7 +85,17 @@
     "problems/BIO-001/experiments/independent_20261011",
     "problems/BIO-001/results/independent_20261011"
   ],
-  "result": null,
+  "result": {
+    "verdict": "INDEPENDENT_METADATA_17_FIELDS_PASS_WITH_LEGACY_COVERAGE_GAP",
+    "child_exit_code": 0,
+    "scientific_all_criteria_passed": true,
+    "broad_problem_completion": false,
+    "research_runs": 1,
+    "usd": 0,
+    "summary": "problems/BIO-001/results/independent_20261011/attempt-1/result.json",
+    "raw_stdout": "problems/BIO-001/results/independent_20261011/attempt-1/stdout.txt",
+    "raw_stderr": "problems/BIO-001/results/independent_20261011/attempt-1/stderr.txt"
+  },
   "public_claim": {
     "status": "POSTED_AND_READ_BACK",
     "url": "https://github.com/lijiabao1998/FrontierBiology/pull/2#issuecomment-6113364102",
@@ -94,7 +104,14 @@
     "comment_id": 6113364102
   },
   "execution": {
-    "status": "NOT_RUN"
+    "finished_at": "2026-10-11T20:27:58.240267+00:00",
+    "wall_seconds": 3.9380266000225674,
+    "child_exit_code": 0,
+    "timed_out": false,
+    "cleanup": {},
+    "result_present": true,
+    "verdict": "INDEPENDENT_METADATA_17_FIELDS_PASS_WITH_LEGACY_COVERAGE_GAP",
+    "status": "COMPLETED"
   },
   "execution_inputs_sha256": {
     "problems/BIO-001/experiments/independent_20261011/.gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
@@ -125,5 +142,7 @@
     "problems/BIO-001/experiments/independent_20261011/SOURCE_MANIFEST.json": "1e14dc769d0b08905459d8c2871cce19d39a7e7cf1dfc4b50cd744cb0a10ae7a",
     "problems/BIO-001/experiments/independent_20261011/verify.py": "68caddeb93f20c9f3c35afd5ed745745222e8b9622b750fe3c5b735c703eda85"
   },
-  "admitted_at": "2026-10-11T20:27:33.126829+00:00"
+  "admitted_at": "2026-10-11T20:27:33.126829+00:00",
+  "finished_at": "2026-10-11T20:27:58.240267+00:00",
+  "independent_review": "Static prelaunch plus final artifact-only review; no reviewer numerical replay."
 }

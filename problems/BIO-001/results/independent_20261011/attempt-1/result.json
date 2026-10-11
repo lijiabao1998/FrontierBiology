@@ -1,0 +1,678 @@
+{
+  "problem": "BIO-001",
+  "baseline": {
+    "accepted": true,
+    "errors": [],
+    "max_numeric_gap": 0.0
+  },
+  "anchors": {
+    "cells_total": 111445,
+    "class_counts": {
+      "single": 57831,
+      "dual": 41759,
+      "control": 11855
+    },
+    "single_perturbations": 105,
+    "median": 495,
+    "p10_index": 10,
+    "p90_index": 94,
+    "all_rows_retained": true
+  },
+  "anchor_check": {
+    "accepted": true,
+    "errors": [],
+    "max_numeric_gap": 0.0
+  },
+  "controls": [
+    {
+      "name": "PLUS_ONE_cells_good_coverage",
+      "path": [
+        "norman_audit",
+        "cells_good_coverage"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.cells_good_coverage",
+          "reason": "integer mismatch",
+          "expected": 104507,
+          "observed": 104508
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_cells_good_coverage\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_cells_good_coverage\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:54.899902+00:00",
+        "finished_at": "2026-10-11T20:27:55.093659+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_cells_good_coverage\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_single_perturbation_cells",
+      "path": [
+        "norman_audit",
+        "single_perturbation_cells"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.single_perturbation_cells",
+          "reason": "integer mismatch",
+          "expected": 57831,
+          "observed": 57832
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_single_perturbation_cells\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_single_perturbation_cells\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:55.096064+00:00",
+        "finished_at": "2026-10-11T20:27:55.287685+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_single_perturbation_cells\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_dual_perturbations",
+      "path": [
+        "norman_audit",
+        "dual_perturbations"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.dual_perturbations",
+          "reason": "integer mismatch",
+          "expected": 131,
+          "observed": 132
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_dual_perturbations\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_dual_perturbations\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:55.292568+00:00",
+        "finished_at": "2026-10-11T20:27:55.486482+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_dual_perturbations\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_cells_per_single_perturbation_min",
+      "path": [
+        "norman_audit",
+        "cells_per_single_perturbation",
+        "min"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.cells_per_single_perturbation.min",
+          "reason": "integer mismatch",
+          "expected": 113,
+          "observed": 114
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_cells_per_single_perturbation_min\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_cells_per_single_perturbation_min\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:55.489817+00:00",
+        "finished_at": "2026-10-11T20:27:55.684359+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_cells_per_single_perturbation_min\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_cells_per_single_perturbation_max",
+      "path": [
+        "norman_audit",
+        "cells_per_single_perturbation",
+        "max"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.cells_per_single_perturbation.max",
+          "reason": "integer mismatch",
+          "expected": 1960,
+          "observed": 1961
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_cells_per_single_perturbation_max\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_cells_per_single_perturbation_max\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:55.686870+00:00",
+        "finished_at": "2026-10-11T20:27:55.878900+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_cells_per_single_perturbation_max\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_cells_per_single_perturbation_p10",
+      "path": [
+        "norman_audit",
+        "cells_per_single_perturbation",
+        "p10"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.cells_per_single_perturbation.p10",
+          "reason": "integer mismatch",
+          "expected": 241,
+          "observed": 242
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_cells_per_single_perturbation_p10\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_cells_per_single_perturbation_p10\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:55.881262+00:00",
+        "finished_at": "2026-10-11T20:27:56.081775+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_cells_per_single_perturbation_p10\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_cells_per_single_perturbation_p90",
+      "path": [
+        "norman_audit",
+        "cells_per_single_perturbation",
+        "p90"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.cells_per_single_perturbation.p90",
+          "reason": "integer mismatch",
+          "expected": 874,
+          "observed": 875
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_cells_per_single_perturbation_p90\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_cells_per_single_perturbation_p90\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:56.084344+00:00",
+        "finished_at": "2026-10-11T20:27:56.273468+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_cells_per_single_perturbation_p90\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_smallest_5_PLK4",
+      "path": [
+        "norman_audit",
+        "smallest_5",
+        "PLK4"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.smallest_5.PLK4",
+          "reason": "integer mismatch",
+          "expected": 113,
+          "observed": 114
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_smallest_5_PLK4\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_smallest_5_PLK4\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:56.275918+00:00",
+        "finished_at": "2026-10-11T20:27:56.461144+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_smallest_5_PLK4\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_smallest_5_HES7",
+      "path": [
+        "norman_audit",
+        "smallest_5",
+        "HES7"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.smallest_5.HES7",
+          "reason": "integer mismatch",
+          "expected": 126,
+          "observed": 127
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_smallest_5_HES7\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_smallest_5_HES7\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:56.464932+00:00",
+        "finished_at": "2026-10-11T20:27:56.656380+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_smallest_5_HES7\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_smallest_5_ZBTB10",
+      "path": [
+        "norman_audit",
+        "smallest_5",
+        "ZBTB10"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.smallest_5.ZBTB10",
+          "reason": "integer mismatch",
+          "expected": 162,
+          "observed": 163
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_smallest_5_ZBTB10\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_smallest_5_ZBTB10\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:56.658938+00:00",
+        "finished_at": "2026-10-11T20:27:56.851206+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_smallest_5_ZBTB10\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_smallest_5_NIT1",
+      "path": [
+        "norman_audit",
+        "smallest_5",
+        "NIT1"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.smallest_5.NIT1",
+          "reason": "integer mismatch",
+          "expected": 192,
+          "observed": 193
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_smallest_5_NIT1\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_smallest_5_NIT1\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:56.853776+00:00",
+        "finished_at": "2026-10-11T20:27:57.045831+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_smallest_5_NIT1\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_smallest_5_CITED1",
+      "path": [
+        "norman_audit",
+        "smallest_5",
+        "CITED1"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.smallest_5.CITED1",
+          "reason": "integer mismatch",
+          "expected": 215,
+          "observed": 216
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_smallest_5_CITED1\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_smallest_5_CITED1\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:57.049246+00:00",
+        "finished_at": "2026-10-11T20:27:57.246572+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_smallest_5_CITED1\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_largest_5_KLF1",
+      "path": [
+        "norman_audit",
+        "largest_5",
+        "KLF1"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.largest_5.KLF1",
+          "reason": "integer mismatch",
+          "expected": 1960,
+          "observed": 1961
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_largest_5_KLF1\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_largest_5_KLF1\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:57.248731+00:00",
+        "finished_at": "2026-10-11T20:27:57.439486+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_largest_5_KLF1\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_largest_5_BAK1",
+      "path": [
+        "norman_audit",
+        "largest_5",
+        "BAK1"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.largest_5.BAK1",
+          "reason": "integer mismatch",
+          "expected": 1457,
+          "observed": 1458
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_largest_5_BAK1\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_largest_5_BAK1\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:57.443030+00:00",
+        "finished_at": "2026-10-11T20:27:57.633524+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_largest_5_BAK1\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_largest_5_CEBPE",
+      "path": [
+        "norman_audit",
+        "largest_5",
+        "CEBPE"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.largest_5.CEBPE",
+          "reason": "integer mismatch",
+          "expected": 1233,
+          "observed": 1234
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_largest_5_CEBPE\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_largest_5_CEBPE\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:57.635792+00:00",
+        "finished_at": "2026-10-11T20:27:57.827142+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_largest_5_CEBPE\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_largest_5_UBASH3B",
+      "path": [
+        "norman_audit",
+        "largest_5",
+        "UBASH3B"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.largest_5.UBASH3B",
+          "reason": "integer mismatch",
+          "expected": 1202,
+          "observed": 1203
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_largest_5_UBASH3B\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_largest_5_UBASH3B\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:57.831175+00:00",
+        "finished_at": "2026-10-11T20:27:58.019428+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_largest_5_UBASH3B\\checker-result.json"
+      }
+    },
+    {
+      "name": "PLUS_ONE_largest_5_ETS2",
+      "path": [
+        "norman_audit",
+        "largest_5",
+        "ETS2"
+      ],
+      "operation": "add1",
+      "independent_accepted": false,
+      "independent_rejected": true,
+      "semantic_errors": [
+        {
+          "path": "root.largest_5.ETS2",
+          "reason": "integer mismatch",
+          "expected": 1201,
+          "observed": 1202
+        }
+      ],
+      "legacy": {
+        "command": [
+          "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-X",
+          "utf8",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+          "--result",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_largest_5_ETS2\\claimed.json",
+          "--output",
+          "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_largest_5_ETS2\\checker-result.json"
+        ],
+        "started_at": "2026-10-11T20:27:58.021604+00:00",
+        "finished_at": "2026-10-11T20:27:58.218123+00:00",
+        "exit_code": 0,
+        "accepted": true,
+        "verdict": "INDEPENDENT_CHECK_MATCH",
+        "result_path": "legacy\\PLUS_ONE_largest_5_ETS2\\checker-result.json"
+      }
+    }
+  ],
+  "control_count": 17,
+  "legacy_clean": {
+    "command": [
+      "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+      "--result",
+      "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\CLEAN\\claimed.json",
+      "--output",
+      "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\CLEAN\\checker-result.json"
+    ],
+    "started_at": "2026-10-11T20:27:54.711569+00:00",
+    "finished_at": "2026-10-11T20:27:54.895555+00:00",
+    "exit_code": 0,
+    "accepted": true,
+    "verdict": "INDEPENDENT_CHECK_MATCH",
+    "result_path": "legacy\\CLEAN\\checker-result.json"
+  },
+  "legacy_accepted_mutants": 17,
+  "legacy_coverage_gap_confirmed": true,
+  "all_criteria_passed": true,
+  "verdict": "INDEPENDENT_METADATA_17_FIELDS_PASS_WITH_LEGACY_COVERAGE_GAP",
+  "limits": "Metadata/count arithmetic and evaluator coverage only; no expression matrix download, synthetic rerun, model fit, mechanistic, generalization, independent biological replication, human identity or clinical claims. Historical r1 E2 INCONCLUSIVE and r2 EXPLORATORY_UNVERIFIED unchanged. GEO and original Science/PMC direct reads blocked by reCAPTCHA/InternalError; inherited repository attribution/archived lawful public K562 metadata reused, with no assertion of a newly obtained GEO license. Benchmark abstract and separate Pertpy primary article read; external subset counts are not this byte-pinned file."
+}

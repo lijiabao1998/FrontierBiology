@@ -1,0 +1,10 @@
+{
+  "status": "INITIAL_COMMAND_TIMEOUT_RETAINED",
+  "timeout_seconds": 60,
+  "exception": "subprocess.TimeoutExpired during switch",
+  "initial_partial_stdout_stderr": "not persisted by initial helper; terminal traceback retained separately",
+  "readback_head": "f88f06450e40379deba5de3ef67213536c0d9641",
+  "readback_branch": "gpt/BIO-001-metadata-independent-20261011",
+  "readback_clean": true,
+  "scientific_execution": "NOT_RUN"
+}
