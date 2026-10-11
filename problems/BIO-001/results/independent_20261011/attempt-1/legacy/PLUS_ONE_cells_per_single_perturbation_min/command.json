@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:\\Users\\Leon1\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-X",
+    "utf8",
+    "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\experiments\\independent_20261011\\reference\\legacy\\bio001_r1\\independent_check.py",
+    "--result",
+    "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_cells_per_single_perturbation_min\\claimed.json",
+    "--output",
+    "C:\\Users\\Leon1\\Documents\\Codex\\2026-10-12\\task\\fourth-batch-independent-20261011\\FrontierBiology\\problems\\BIO-001\\results\\independent_20261011\\attempt-1\\legacy\\PLUS_ONE_cells_per_single_perturbation_min\\checker-result.json"
+  ],
+  "started_at": "2026-10-11T20:27:55.489817+00:00",
+  "finished_at": "2026-10-11T20:27:55.684359+00:00",
+  "exit_code": 0
+}

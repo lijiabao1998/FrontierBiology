@@ -1,0 +1,20 @@
+{
+  "independent_counts": {
+    "cells_total": 111445,
+    "class_counts": {
+      "single": 57831,
+      "dual": 41759,
+      "control": 11855
+    },
+    "single_perturbations": 105
+  },
+  "checks": {
+    "cells_total": true,
+    "class_counts": true,
+    "single_perturbations": true,
+    "cells_per_single_median": true,
+    "fold_sizes_deterministic": true,
+    "spot_identities": true
+  },
+  "verdict": "INDEPENDENT_CHECK_MATCH"
+}

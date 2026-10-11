@@ -1,0 +1,1 @@
+{"verdict": "INDEPENDENT_METADATA_17_FIELDS_PASS_WITH_LEGACY_COVERAGE_GAP", "fields": 17, "controls_rejected": 17, "legacy_accepted_mutants": 17, "all_criteria_pass": true}
