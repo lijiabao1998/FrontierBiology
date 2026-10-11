@@ -1,0 +1,86 @@
+{
+  "source_head": "f88f06450e40379deba5de3ef67213536c0d9641",
+  "instruction_paths": [
+    "AGENTS.md"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "snapshot": "reference/README.md",
+      "bytes": 3901,
+      "sha256": "46729749e752897fd8d780a53dd837cc2f74101a62e9846f94e05daae0202729",
+      "git_blob": "bb3dabc2eaa87da4ba3d0821a2d1375838302d4e"
+    },
+    {
+      "path": "STATUS.md",
+      "snapshot": "reference/STATUS.md",
+      "bytes": 1101,
+      "sha256": "9da59a942422d1e4997e2500de717b4b954cb0a3d88188c97ebf53746b23fbba",
+      "git_blob": "da924f1c852af1f9a9f19b6518f72fd832b7068d"
+    },
+    {
+      "path": "AGENTS.md",
+      "snapshot": "reference/AGENTS.md",
+      "bytes": 1537,
+      "sha256": "100954b74083348d91c904f7f1e5de429d1299fc9a4a91e495b6edae72c468e0",
+      "git_blob": "b8100d4471b0c2aaea2678b591ab07729f26ac9c"
+    },
+    {
+      "path": "VALIDATION.md",
+      "snapshot": "reference/VALIDATION.md",
+      "bytes": 1162,
+      "sha256": "2c56c7fbea7e4999528de8cb4e3de1b0aa40209e214be88b2aef5e526299c4eb",
+      "git_blob": "07e58a43287d7f1a8fc9c2c378baf432999ac29e"
+    },
+    {
+      "path": "GOVERNANCE.lock.json",
+      "snapshot": "reference/GOVERNANCE.lock.json",
+      "bytes": 132,
+      "sha256": "c19b61338d1adaf42d0b4884f71933c885512ad85c1619712212629c38257fac",
+      "git_blob": "42b40262e7510f483494c299a85bdbe7037b0a23"
+    },
+    {
+      "path": "problems/BIO-001/problem.json",
+      "snapshot": "reference/problem.json",
+      "bytes": 1704,
+      "sha256": "0a943342e6c3ea331684db890fd02b272eb7ff61947c139c39bc2a48141f0d95",
+      "git_blob": "14c6196a204f3283a28ce6ebc5d62a18470644dc"
+    },
+    {
+      "path": "problems/BIO-001/experiments/lit_data/GSE133344_filtered_cell_identities.csv.gz",
+      "snapshot": "reference/legacy/lit_data/GSE133344_filtered_cell_identities.csv.gz",
+      "bytes": 1956905,
+      "sha256": "daf30337e7f6f07096d57e0d81db784bef00c87bd1fc927f018792c2f7af81e4",
+      "git_blob": "efff57bee0130f0acdff8266953755fa6fc53b45"
+    },
+    {
+      "path": "problems/BIO-001/experiments/bio001_r1/independent_check.py",
+      "snapshot": "reference/legacy/bio001_r1/independent_check.py",
+      "bytes": 4008,
+      "sha256": "834f7d44ea288fa36c515b5961464ab8a092b65412398e1e776db6076d427f21",
+      "git_blob": "a412aa197a0a898d3d6682d1f935197826712981"
+    },
+    {
+      "path": "problems/BIO-001/experiments/bio001_r1/bio001_split_evaluator.py",
+      "snapshot": "reference/author-source.py",
+      "bytes": 16875,
+      "sha256": "650e58f137c96e44c4c584159259deb309c99d6ea658fd817308870c49bdeae5",
+      "git_blob": "7981bffbf3d0dda2159b8285670d74490d21bdd7"
+    },
+    {
+      "path": "problems/BIO-001/experiments/bio001_r1/dataset_map.md",
+      "snapshot": "reference/dataset_map.md",
+      "bytes": 2559,
+      "sha256": "4d017553fca2941a9f17df8c2178a8a96a97d6559fff2fd6d5eb4475a58eba51",
+      "git_blob": "e6a81a58af5422ab38d27ef17626a75163840fa6"
+    },
+    {
+      "path": "problems/BIO-001/results/r1/bio001_r1_results.json",
+      "snapshot": "reference/author-results.json",
+      "bytes": 2874,
+      "sha256": "88275870f6d183944155e6e620dbe25ebf17fbe28395f257404d413d0854a44f",
+      "git_blob": "9dd726e73b604f1666e82cc92c6aff417477c420"
+    }
+  ],
+  "scientific_execution": "NOT_RUN"
+}

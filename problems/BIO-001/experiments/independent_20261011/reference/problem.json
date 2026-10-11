@@ -1,0 +1,13 @@
+{
+"id":"BIO-001","domain":"biology","title":"單細胞擾動反應的跨情境泛化","status":"OPEN","priority":"A","checked_on":"2026-09-27",
+"statement":"能否對訓練未見的細胞情境及擾動組合，可靠預測轉錄反應與其不確定性？先凍結一組公開、低風險、非臨床資料的留出規則。",
+"known_result":"近期原始benchmark對多種方法與資料集比較，指出未見細胞情境及擾動下的泛化仍是重要缺口。",
+"open_gap":"跨細胞類型／donor／實驗批次及未見擾動組合的可靠泛化，而非随机切分的高分。",
+"first_task":"核資料license與版本，選小型公开子集，以donor／cell-type留出對比均值及線性基線，先驗證無資料洩漏。",
+"evaluator":"凍結的擾動反應指標、效應大小與區間、分層誤差、資料切分負控制；計算成本一併記錄。",
+"validation_limits":"測試集分數不等於因果機制；同細胞批次重切不是獨立replication。",
+"completion_criterion":"先完成凍結資料與範圍的子任務；廣泛泛化問題只有同範圍的獨立證據才可關閉。",
+"screening_note":"本次讀原始摘要及benchmark公開內容；尚未下載資料或重現模型，不能宣稱已完成泛化評估。",
+"screening_queries":["\"Benchmarking algorithms for generalizable single-cell perturbation response prediction\"","\"Benchmarking algorithms\" \"generalizable\" \"perturbation\""],
+"sources":[{"title":"Benchmarking algorithms for generalizable single-cell perturbation response prediction","url":"https://www.nature.com/articles/s41592-025-02980-0","kind":"primary","supports":"不同細胞情境及擾動的泛化評估與缺口。"}]
+}

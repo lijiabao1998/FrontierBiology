@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "problem": "BIO-001",
+  "source_head": "f88f06450e40379deba5de3ef67213536c0d9641",
+  "scope": "Independent verification of seven previously unchecked metadata leaves and ten named extreme single-target counts from the archived Norman2019 K562 identity CSV; dynamic legacy-checker coverage audit.",
+  "definition": "Read every one of111445 CSV rows with stdlib gzip/csv. Good coverage separately counts exact True; never prefilter. Targets are sorted unique nonempty underscore tokens excluding NegCtrl prefixes and all-digit tokens. Singles count one target; duals distinct two-target sets.105 single counts sorted ascending: min/max, p10 at index n//10=10, p90 at 9*n//10=94 (no interpolation). Extremes sorted by counts then gene for deterministic ties; specified17 integer fields exactly. Cells/classes/105/median495 are anchors; legacy six existing checks are baseline.",
+  "controls": [
+    {
+      "name": "PLUS_ONE_cells_good_coverage",
+      "path": [
+        "cells_good_coverage"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_single_perturbation_cells",
+      "path": [
+        "single_perturbation_cells"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_dual_perturbations",
+      "path": [
+        "dual_perturbations"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_cells_per_single_perturbation_min",
+      "path": [
+        "cells_per_single_perturbation",
+        "min"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_cells_per_single_perturbation_max",
+      "path": [
+        "cells_per_single_perturbation",
+        "max"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_cells_per_single_perturbation_p10",
+      "path": [
+        "cells_per_single_perturbation",
+        "p10"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_cells_per_single_perturbation_p90",
+      "path": [
+        "cells_per_single_perturbation",
+        "p90"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_smallest_5_PLK4",
+      "path": [
+        "smallest_5",
+        "PLK4"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_smallest_5_HES7",
+      "path": [
+        "smallest_5",
+        "HES7"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_smallest_5_ZBTB10",
+      "path": [
+        "smallest_5",
+        "ZBTB10"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_smallest_5_NIT1",
+      "path": [
+        "smallest_5",
+        "NIT1"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_smallest_5_CITED1",
+      "path": [
+        "smallest_5",
+        "CITED1"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_largest_5_KLF1",
+      "path": [
+        "largest_5",
+        "KLF1"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_largest_5_BAK1",
+      "path": [
+        "largest_5",
+        "BAK1"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_largest_5_CEBPE",
+      "path": [
+        "largest_5",
+        "CEBPE"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_largest_5_UBASH3B",
+      "path": [
+        "largest_5",
+        "UBASH3B"
+      ],
+      "operation": "add",
+      "delta": 1
+    },
+    {
+      "name": "PLUS_ONE_largest_5_ETS2",
+      "path": [
+        "largest_5",
+        "ETS2"
+      ],
+      "operation": "add",
+      "delta": 1
+    }
+  ],
+  "acceptance": "Exact17 fields and all-row/schema/domain anchors;17 named single-field+1 mutants rejected by semantic comparison. Unmodified legacy code bytes, preserved relative gzip layout, explicit new --result/--output paths: clean exit0/INDEPENDENT_CHECK_MATCH/six strictTrue checks; all17 mutants expected same legacy acceptance, confirming coverage gap. Legacy exit1/INDEPENDENT_CHECK_MISMATCH is valid rejection but fails this frozen expected coverage-gap contract; timeout/badJSON/otherexit is infrastructure fail-closed, never a rejection. Total verdict fails on any missing,nonfinite/domain/control/infra failure.",
+  "limits": "Metadata/count arithmetic and evaluator coverage only; no expression matrix download, synthetic rerun, model fit, mechanistic, generalization, independent biological replication, human identity or clinical claims. Historical r1 E2 INCONCLUSIVE and r2 EXPLORATORY_UNVERIFIED unchanged. GEO and original Science/PMC direct reads blocked by reCAPTCHA/InternalError; inherited repository attribution/archived lawful public K562 metadata reused, with no assertion of a newly obtained GEO license. Benchmark abstract and separate Pertpy primary article read; external subset counts are not this byte-pinned file.",
+  "preflight": {
+    "checked_at": "2026-10-11T20:21:41.808481+00:00",
+    "verdict": "PARTIAL_PROGRESS",
+    "queries": [
+      {
+        "category": "general",
+        "query": "single cell perturbation generalization benchmark Norman GSE133344 2026",
+        "engine": "web.run search index",
+        "outcome": "fresh after official start20:15:07, search20:15:33 plus undatedquery; noisy results; relevant primary reads separate; no broad resolution established"
+      },
+      {
+        "category": "discipline",
+        "query": "site:nature.com/articles/s41592-025-02980-0 generalizable single-cell perturbation",
+        "engine": "web.run search index",
+        "outcome": "fresh after official start20:15:07, search20:15:33 plus undatedquery; noisy results; relevant primary reads separate; no broad resolution established"
+      },
+      {
+        "category": "solution",
+        "query": "\"GSE133344\" single-cell generalization solved validation 2026",
+        "engine": "web.run search index",
+        "outcome": "fresh after official start20:15:07, search20:15:33 plus undatedquery; noisy results; relevant primary reads separate; no broad resolution established"
+      },
+      {
+        "category": "criticism",
+        "query": "\"s41592-025-02980-0\" correction retraction erratum",
+        "engine": "web.run search index",
+        "outcome": "fresh after official start20:15:07, search20:15:33 plus undatedquery; noisy results; relevant primary reads separate; no broad resolution established"
+      },
+      {
+        "category": "solution",
+        "query": "\"single-cell perturbation\" \"generalization\" \"solved\" \"GSE133344\"",
+        "engine": "web.run search index",
+        "outcome": "fresh after official start20:15:07, search20:15:33 plus undatedquery; noisy results; relevant primary reads separate; no broad resolution established"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Benchmarking algorithms for generalizable single-cell perturbation response prediction",
+        "url": "https://www.nature.com/articles/s41592-025-02980-0",
+        "version": "published2025-12-11; NatureMethods23(2026)",
+        "read_scope": "abstract and data/code availability, subscription preview",
+        "supports": "Context generalization is distinct from metadata arithmetic.",
+        "kind": "primary"
+      },
+      {
+        "title": "Pertpy: an end-to-end framework for perturbation analysis",
+        "url": "https://www.nature.com/articles/s41592-025-02909-7",
+        "version": "published2025-12-31;NatureMethods23(2026)",
+        "read_scope": "abstract/main/data example and preprocessing paragraphs",
+        "supports": "Public Norman K562 dataset and preprocessing-dependent subsets; no expression analysis here.",
+        "kind": "primary"
+      }
+    ],
+    "limitations": "Metadata/count arithmetic and evaluator coverage only; no expression matrix download, synthetic rerun, model fit, mechanistic, generalization, independent biological replication, human identity or clinical claims. Historical r1 E2 INCONCLUSIVE and r2 EXPLORATORY_UNVERIFIED unchanged. GEO and original Science/PMC direct reads blocked by reCAPTCHA/InternalError; inherited repository attribution/archived lawful public K562 metadata reused, with no assertion of a newly obtained GEO license. Benchmark abstract and separate Pertpy primary article read; external subset counts are not this byte-pinned file.",
+    "scope_comparison": "Broad problem unresolved by this arithmetic audit; verify existing previously excluded report fields only.",
+    "baseline": "Inherited source-head report numbers and historical status are expectations, never this round results.",
+    "sources_read": true,
+    "scope_compared": true,
+    "retractions_checked": true,
+    "licenses_checked": true,
+    "safety_checked": true,
+    "baseline_identified": true,
+    "acceptance_frozen": true
+  },
+  "budget": {
+    "wall_minutes": 30,
+    "usd": 0,
+    "max_trials": 100,
+    "cpu_affinity_count": 1,
+    "concurrency": 1,
+    "preparation_started_at": "2026-10-11T20:06:38+00:00",
+    "preparation_stop_deadline": "2026-10-11T20:36:38+00:00"
+  },
+  "execution": "NOT_RUN",
+  "csv_header": [
+    "cell_barcode",
+    "guide_identity",
+    "read_count",
+    "UMI_count",
+    "coverage",
+    "gemgroup",
+    "good_coverage",
+    "number_of_cells"
+  ],
+  "expected_17_values": [
+    104507,
+    57831,
+    131,
+    113,
+    1960,
+    241,
+    874,
+    113,
+    126,
+    162,
+    192,
+    215,
+    1960,
+    1457,
+    1233,
+    1202,
+    1201
+  ]
+}
